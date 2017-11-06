@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd 
+
+">
+<struts>
+
+	<package name="com" namespace="/" extends="struts-default">
+        <action name="GYM" class="com.zyqAction">
+            <result>/welcome.jsp</result>
+        </action>
+  
+        
+       <action name="register">
+        <result >/identification2.jsp</result>
+        </action>
+      
+        
+        <action name="registerguest">
+        <result >/register2.jsp</result>
+        </action>
+        
+        <action name="registersuccess" class="com.Register2Action">
+        <result name="success">/welcome.jsp</result>
+        <result name="error">/login2.jsp</result>
+        </action>
+        
+    </package>
+    
+
+</struts>
