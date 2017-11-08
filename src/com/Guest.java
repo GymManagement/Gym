@@ -86,11 +86,11 @@ public class Guest {
         }  
     }  
     //µ•∂¿≤‚ ‘ π”√  
-    public static void main(String[] args) {  
+ /*   public static void main(String[] args) {  
         String psw =new UserDao().findUsername("345");  
         System.out.println(psw);  
         Guest u = new Guest();  
         u.addUser("346", "346","346", "365","355","346",34,34,36,"355");  
-    }  
+    }  */
       
 }  

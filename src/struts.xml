@@ -8,23 +8,32 @@
 
 	<package name="com" namespace="/" extends="struts-default">
         <action name="GYM" class="com.zyqAction">
-            <result>/welcome.jsp</result>
+            <result>welcome.jsp</result>
+        </action>
+        
+         <action name="login">
+        <result >identification.jsp</result>          
         </action>
   
         
-       <action name="register">
-        <result >/identification2.jsp</result>
+        <action name="loginguest">
+        <result >loginuser.jsp</result>
         </action>
-      
         
         <action name="registerguest">
-        <result >/register2.jsp</result>
+        <result >registeruser.jsp</result>
         </action>
         
-        <action name="registersuccess" class="com.Register2Action">
-        <result name="success">/welcome.jsp</result>
-        <result name="error">/login2.jsp</result>
-        </action>
+  
+        
+        <action name="loginAction" class="com.LoginuserAction" method="login">  
+            <result name="success">hello.jsp</result>  
+            <result name="error">loginuser.jsp</result>  
+        </action>  
+        <action name="registAction" class="com.LoginuserAction" method="regist">  
+            <result name="success">login.jsp</result>  
+            <result name="error">registeruser.jsp</result>  
+        </action>  
         
     </package>
     
