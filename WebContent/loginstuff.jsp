@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>  
 <%@ taglib uri="/struts-tags" prefix="s" %>  
-<%@ page import="com.User" %>
+<%@ page import = "com.Stuff" %>
 <%  
 String path = request.getContextPath();  
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
@@ -9,20 +9,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>  
   <head>  
     <base href="<%=basePath%>">  
-    <title><s:text name="title_loginuser"></s:text></title>  
+    <title><s:text name="title_loginstuff"></s:text></title>  
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">  
   </head>  
   <body>  
   <div><s:fielderror /></div>  
-    <form action="loginuserAction" method="post" name="form1">  
+    <form action="loginstuffAction" method="post" name="form1">  
     <table align="center">  
         <tr>  
-            <td><s:text name="phonenum"></s:text></td>  
-            <td><input type="text" name="user.phonenum"></td>  
+            <td><s:text name="gym"></s:text></td>  
+            <td><input type="text" name="stuff.gym"></td>  
+        </tr>  
+        <tr>  
+            <td><s:text name="identity"></s:text></td>  
+            <td><input type="text" name="stuff.identity"></td>  
         </tr>  
         <tr>  
             <td><s:text name="password"></s:text></td>  
-            <td><input type="password" name="user.password"></td>  
+            <td><input type="password" name="stuff.password"></td>  
         </tr>  
         
     

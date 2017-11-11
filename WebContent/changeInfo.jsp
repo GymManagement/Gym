@@ -8,9 +8,28 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="loginAction.action">
-输入姓名：<input type="text" name="xxx">
+
+
+<form action="backchangeinfo.action">
+
+
+请输入密码以验证身份：<input type=text name="password"/>
+<br>
+新密码：<input type=text name="newpassword"/>
+<br>
+新名字：<input type=text name="newname"/>
+<br>
+新邮箱：<input type=text name="newemail"/>
+<br>
+
+
 <input type=submit value="提交"/>
+<br>
+</form>
+
+<form action="backHomepage.action">
+<input type=submit value="返回首页"/>
+<br>
 </form>
 </body>
 </html>

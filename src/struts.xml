@@ -7,33 +7,138 @@
 <struts>
 
 	<package name="com" namespace="/" extends="struts-default">
-        <action name="GYM" class="com.zyqAction">
+	      <action name="GYM" >
             <result>welcome.jsp</result>
         </action>
         
-         <action name="login">
-        <result >identification.jsp</result>          
+        <action name="login">
+        <result >/identification.jsp</result>          
         </action>
-  
         
         <action name="loginguest">
-        <result >loginuser.jsp</result>
+        <result >/loginuser.jsp</result>
+        </action>
+        
+        <action name="loginworker">
+        <result>/loginstuff.jsp</result>
+        </action>
+        
+        <action name="register">
+        <result >/identification2.jsp</result>          
         </action>
         
         <action name="registerguest">
-        <result >registeruser.jsp</result>
+        <result >/registeruser.jsp</result>
         </action>
         
-  
+        <action name="registerworker">
+        <result >/registerstuff.jsp</result>
+        </action>
         
-        <action name="loginAction" class="com.LoginuserAction" method="login">  
-            <result name="success">hello.jsp</result>  
+        
+        <action name="loginuserAction" class="com.LoginuserAction" method="login">  
+            <result name="success">userHomepage.jsp</result>  
             <result name="error">loginuser.jsp</result>  
-        </action>  
-        <action name="registAction" class="com.LoginuserAction" method="regist">  
-            <result name="success">login.jsp</result>  
+        </action>
+
+          
+        <action name="registuserAction" class="com.LoginuserAction" method="regist">  
+            <result name="success">loginuser.jsp</result>  
             <result name="error">registeruser.jsp</result>  
+        </action>
+        
+        <action name="loginstuffAction" class="com.LoginstuffAction" method="login">  
+            <result name="success">index.jsp</result>  
+            <result name="error">loginstuff.jsp</result>  
         </action>  
+        
+        <action name="registstuffAction" class="com.LoginstuffAction" method="regist">  
+            <result name="success">loginstuff.jsp</result>  
+            <result name="error">registerstuff.jsp</result>  
+        </action>
+        
+        <action name="loginAction" class="com.loginAction">
+            <result>/userHomepage.jsp</result>
+        </action>
+        
+        <action name="searchGym" class="com.searchGymAction">
+            <result name="success">/gymdetail.jsp</result>
+            <result name="error">/notfound.jsp</result>
+        </action>
+        
+        <action name="myplan" class="com.myplanAction">
+            <result>/MyPlan.jsp</result>
+        </action>
+        
+        <action name="myplantest" class="com.myplantestAction">
+            <result>/MyPlan.jsp</result>
+        </action>
+        
+        <action name="myplanaim" class="com.myplanaimAction">
+            <result>/MyPlan.jsp</result>
+        </action>
+        
+        <action name="backHomepage" class="com.helloAction">
+            <result>/userHomepage.jsp</result>
+        </action>
+        
+        <action name="rankingGym" class="com.rankingAction">
+            <result>/rankingGym.jsp</result>
+        </action>
+        
+        <action name="backLogin" class="com.helloAction">
+            <result>/login.jsp</result>
+        </action>
+        
+        <action name="test" class="com.helloAction">
+            <result>/test.jsp</result>
+        </action>
+        
+        <action name="changeInfo" class="com.loginAction">
+            <result>/changeInfo.jsp</result>
+        </action>
+               
+        <action name="backchangeinfo" class="com.changeInfoAction">
+            <result name="success">/userHomepage.jsp</result>
+            <result name="error">/changeInfo.jsp</result>
+        </action>
+        
+        <action name="score" class="com.scoreAction">
+            <result name="success">/gymdetail.jsp</result>
+        </action>
+        
+        <action name="gyminfo" class="com.gyminfoAction">
+            <result name="success">/index.jsp</result>
+        </action>
+        
+        <action name="biggame" class="com.getgameAction">
+            <result name="success">/gamedetail.jsp</result>
+        </action>
+        
+        <action name="welcomegame" class="com.welcomegameAction">
+            <result name="success">/gamedetail.jsp</result>
+        </action>
+        
+        <action name="backwelcome">
+            <result>/welcome.jsp</result>
+        </action>
+                
+        <action name="facinum" class="com.facinumAction">  
+            <result name="login">gymsheshi.jsp</result>  
+            <result name="success">gymsheshi.jsp</result>  
+        </action>
+                
+        <action name="order" class="com.orderAction">  
+            <result>gymdetail.jsp</result>  
+        </action>
+        
+        <action name="checkfac" class="com.gymdetailstuffAction">  
+            <result>checkfac.jsp</result>  
+        </action>
+        
+        <action name="backstuff">  
+            <result>index.jsp</result>  
+        </action>
         
     </package>
     

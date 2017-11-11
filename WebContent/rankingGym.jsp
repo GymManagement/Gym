@@ -8,9 +8,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="loginAction.action">
-输入姓名：<input type="text" name="xxx">
-<input type=submit value="提交"/>
+
+<s:iterator value="gymlist" var='i'>
+    <a href="searchGym?nameOfGym=<s:property value="name"/>"><s:property value="name"/></a>
+    <s:property value="num"/>人评价
+    <s:property value="score"/>分
+  <br>
+</s:iterator>
+
+<form action="backHomepage.action">
+<input type=submit value="返回首页"/>
+<br>
 </form>
+
+
 </body>
 </html>

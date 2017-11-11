@@ -7,30 +7,34 @@ import com.opensymphony.xwork2.ActionSupport;
 
 
 
-public class LoginuserAction extends ActionSupport {
+public class LoginstuffAction extends ActionSupport {
 
     private static final long serialVersionUID = 1L;
     
-    private User user;
-    private UserDao userDao = new UserDaoImpl();
-    private String xxx;
-	public String getXxx() {
-		return xxx;
+    private Stuff stuff;
+    private StuffDao stuffDao = new StuffDaolmpl();
+    private String name;
+    
+    
+    public String getName() {
+		return name;
 	}
-	public void setXxx(String xxx) {
-		this.xxx = xxx;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-    public User getUser() {
-        return user;
+
+	public Stuff getStuff() {
+        return stuff;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setStuff(Stuff stuff) {
+        this.stuff = stuff;
     }
-    
+
     public String regist(){  
-        UserDaoImpl dao = new UserDaoImpl();  
-        int i = dao.userRegister(user);  
+        StuffDaolmpl dao = new StuffDaolmpl();  
+        int i = dao.stuffRegister(stuff);  
         if(i!=-1){  
             return SUCCESS;  
         }else{  
@@ -39,22 +43,22 @@ public class LoginuserAction extends ActionSupport {
     }  
     
     public String login(){  
-        User psw = userDao.userLogin(user.getPhonenum(),user.getPassword());  
+    	ActionContext ac=ActionContext.getContext();
+		Map<String, Object> session=ac.getSession();
+		session.put("gym", stuff.getGym());
+		this.setName((String)session.get("gym"));
+        Stuff psw = stuffDao.stuffLogin(stuff.getIdentity(),stuff.getPassword(),stuff.getGym());  
         if(psw==null){
-            ActionContext.getContext().put("tip", getText("没有这个用户，请注册"));
+            ActionContext.getContext().put("tip", "没有这个工作人员，请注册");
             return ERROR;  
         }
-        else if(!(psw.getPassword()).equals(user.getPassword())) {
+     /*   if(psw!=null && !psw.equals(user.getPassword())) {
            ActionContext.getContext().put("tip", getText("密码错误，请重新登录")); 
            return ERROR;
-        }
+        }*/
         else{  
             ActionContext.getContext().put("tip", getText("success"));  
-            ActionContext.getContext().put("username", user.getPhonenum()); 
-            ActionContext ac=ActionContext.getContext();
-    		Map<String, Object> session=ac.getSession();
-    		session.put("username", user.getPhonenum());
-    		this.setXxx((String)session.get("username"));
+            ActionContext.getContext().put("identity", stuff.getPhonenum());  
             return SUCCESS;  
         }  
     }

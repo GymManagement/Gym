@@ -1,49 +1,34 @@
 package com;
-//工作人员登录
-import java.io.IOException;  
-import javax.servlet.ServletException;  
-import javax.servlet.http.HttpServlet;  
-import javax.servlet.http.HttpServletRequest;  
-import javax.servlet.http.HttpServletResponse;  
-  
-import com.UserDao;  
-  
-public class LoginAction extends HttpServlet {  
-  
-    private static final long serialVersionUID = 1L;  
-  
-    public void doPost(HttpServletRequest request, HttpServletResponse response)  
-            throws ServletException, IOException {  
-        request.setCharacterEncoding("utf-8");  
-        response.setContentType("text/html;charset=utf-8");  
-        String identity = request.getParameter("identity");  
-        String password = request.getParameter("password");  
-        /*String verifyc  = request.getParameter("verifycode");
-        String svc =(String) request.getSession().getAttribute("sessionverify");  
-         
-        if(!svc.equalsIgnoreCase(verifyc)){  
-            request.setAttribute("msg", "验证码错误！");  
-            request.getRequestDispatcher("/index.jsp").forward(request, response);  
-            return;  
-        }  */
-        String psw =new UserDao().findUsername(identity);
-        if(psw ==null){  
-            request.setAttribute("msg", "没有这个用户！");  
-            request.getRequestDispatcher("/login2.jsp").forward(request, response);  
-            return ;
-        }  
-        if(psw!=null&&!psw.equals(password)){  
-            request.setAttribute("msg", "密码错误请重新输入！");  
-            request.getRequestDispatcher("/login2.jsp").forward(request, response);  
-            return;  
-        }  
-        if(psw.equals(password)){  
-            request.setAttribute("msg", "用户："+identity+",欢迎访问");  
-            request.getRequestDispatcher("/idontknow.jsp").forward(request, response);  
-            //response.setHeader("Refresh","1;url=welcome.jsp");  
-        }  
-          
-    }  
-    
-  
-}  
+
+import java.sql.Date;
+import java.awt.print.Printable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Map;
+
+import org.apache.struts2.ServletActionContext;
+
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.inject.Context;
+public class loginAction extends ActionSupport {
+
+	private static final long serialVersionUID = 1L;
+	private String xxx;
+	public String getXxx() {
+		return xxx;
+	}
+	public void setXxx(String xxx) {
+		this.xxx = xxx;
+	}
+	public String execute() throws Exception{
+		ActionContext ac=ActionContext.getContext();
+		Map<String, Object> session=ac.getSession();
+		session.put("username", xxx);
+		this.setXxx((String)session.get("username"));
+	    return SUCCESS;
+	}
+     
+}

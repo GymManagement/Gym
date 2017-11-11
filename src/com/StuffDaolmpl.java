@@ -6,17 +6,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;  
 import java.sql.SQLException;  
   
-import com.User;
+import com.Stuff;
 
   
-public class UserDaoImpl implements UserDao {  
+public class StuffDaolmpl implements StuffDao {  
 
     @Override    
-    public User userLogin(String phonenum,String password) {  
+    public Stuff stuffLogin(String identity,String password,String gym) {  
         Connection conn = null;  
         PreparedStatement pstmt = null;  
         ResultSet rs = null;  
-        User psw = null;  
+        Stuff psw = null;  
 
         try {  
             String driver ="com.mysql.jdbc.Driver";  
@@ -31,17 +31,18 @@ public class UserDaoImpl implements UserDao {
             }  
             conn = DriverManager.getConnection(url, user, password1); 
             System.out.println("Success connect Mysql server!");  
-            String sql="select * from 普通用户 where 电话=? and 密码=?"; 
+            String sql="select * from 工作人员 where 编号=? and 密码=? and 体育馆=?"; 
             pstmt = conn.prepareStatement(sql);  
-            pstmt.setString(1, phonenum);  
+            pstmt.setString(1, identity);  
             pstmt.setString(2, password);  
+            pstmt.setString(3, gym);  
             rs = pstmt.executeQuery();  
             if(rs.next()){  
-                psw = new User();  
-                psw.setPhonenum(rs.getString("电话"));
+                psw = new Stuff();  
+                psw.setIdentity(rs.getString("编号"));
                 psw.setPassword(rs.getString("密码"));  
-                
-                System.out.println(psw.getPhonenum());  
+                psw.setGym(rs.getString("体育馆"));
+                System.out.println(psw.getIdentity());  
                 System.out.println(psw.getPassword());  
                
             }  
@@ -59,7 +60,7 @@ public class UserDaoImpl implements UserDao {
         return psw;  
     }  
     @Override
-    public int userRegister(User user) {  
+    public int stuffRegister(Stuff stuff) {  
         int i=-1;
         Connection conn = null;  
         PreparedStatement pstmt = null;  
@@ -78,19 +79,14 @@ public class UserDaoImpl implements UserDao {
             }  
             conn = DriverManager.getConnection(url, user1, password1); 
             System.out.println("Success connect Mysql server!");  
-            String sql = "INSERT INTO 普通用户(电话,姓名,邮箱,密码,体型,周期,身高,体重,目标体重,训练内容) VALUES(?,?,?,?,?,?,?,?,?,?)";    
+            String sql = "INSERT INTO 工作人员(编号,姓名,邮箱,电话,密码,体育馆) VALUES(?,?,?,?,?,?)";    
             pstmt = conn.prepareStatement(sql);  
-            pstmt.setString(1, user.getPhonenum());
-            pstmt.setString(2,user.getUsername());
-            pstmt.setString(3,user.getEmail());
-            pstmt.setString(4, user.getPassword());  
-            pstmt.setString(5,user.getBody());
-            pstmt.setString(6,user.getTime());
-            
-            pstmt.setInt(7,user.getHeight());
-            pstmt.setInt(8,user.getWeight());
-            pstmt.setInt(9,user.getAim());
-            pstmt.setString(10,user.getExercise());
+            pstmt.setString(1, stuff.getIdentity());
+            pstmt.setString(2,stuff.getUsername());
+            pstmt.setString(3,stuff.getEmail());
+            pstmt.setString(4,stuff.getPhonenum());  
+            pstmt.setString(5,stuff.getPassword());
+            pstmt.setString(6,stuff.getGym());
             i = pstmt.executeUpdate(); 
         } catch (SQLException e) {  
             System.out.println("注册错误！");  

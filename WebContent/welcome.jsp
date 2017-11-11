@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>  
+    <%@taglib prefix="s" uri="/struts-tags" %>
+
 <%  
 String path = request.getContextPath();  
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
@@ -39,7 +41,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <br>
      &nbsp; &nbsp;<img src="D:/java-learn/lab2/src/com/gym.jpg" width="200" height="150" hspace="300" />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-       体育馆比赛信息
+      <a href="welcomegame?id=1">体育馆比赛信息</a>
+       
     <br>
     <img src="D:/java-learn/lab2/src/com/game.jpg" width="200" height="150" hspace="300" />
 
