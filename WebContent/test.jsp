@@ -5,13 +5,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>填写您的信息</title>
 </head>
 <body>
-体育馆们
+请填写您的基本信息
+<br><br>
+<form action="myplantest.action">
+身高：<input type="text" name="changedheight">
+体重：<input type="text" name="changedweight">
 
-<form action="backHomepage.action">
-<input type=submit value="返回首页"/>
+
+<br><br>
+
+
+<input type=submit value="提交结果"/>
 </form>
+<br>
+
 </body>
 </html>

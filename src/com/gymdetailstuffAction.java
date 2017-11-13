@@ -7,12 +7,14 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class searchGymAction extends ActionSupport {
+public class gymdetailstuffAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
-	private String nameOfGym;
 	private String position;
 	private String price;
 	private String time;
@@ -111,13 +113,6 @@ public class searchGymAction extends ActionSupport {
 		this.score = score;
 	}
 
-	public String getNameOfGym() {
-		return nameOfGym;
-	}
-
-	public void setNameOfGym(String nameOfGym) {
-		this.nameOfGym = nameOfGym;
-	}
 
 	private List<facility> faclist =new ArrayList<facility>();
 	
@@ -131,6 +126,8 @@ public class searchGymAction extends ActionSupport {
 	}
 
 	public String execute() throws Exception{
+		ActionContext ac=ActionContext.getContext();
+		Map<String, Object> session=ac.getSession();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");     //加载MYSQL JDBC驱动程序   
 			System.out.println("Success loading Mysql Driver!");
@@ -141,7 +138,7 @@ public class searchGymAction extends ActionSupport {
 			String url="jdbc:mysql://localhost:3306/体育馆基本信息?characterEncoding=utf8&useSSL=false";
 			conn = DriverManager.getConnection(url,"root","123456");
 			stmt = conn.createStatement(); //创建Statement对象	
-			String sql= "select * from 所有体育馆 where 名称='"+getNameOfGym()+"'";
+			String sql= "select * from 所有体育馆 where 名称='"+(String)session.get("gym")+"'";
 			rs = stmt.executeQuery(sql);
 			if(rs.next()){
 					setPosition(rs.getString("位置"));
@@ -154,7 +151,7 @@ public class searchGymAction extends ActionSupport {
 			else {
 				return ERROR;
 			}
-			sql= "select * from 设施信息 where 体育馆='"+getNameOfGym()+"'";
+			sql= "select * from 设施信息 where 体育馆='"+(String)session.get("gym")+"'";
 			rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				facility tfac=new facility();
@@ -165,6 +162,9 @@ public class searchGymAction extends ActionSupport {
 				tfac.setTime3(rs.getInt("时间段3"));
 				faclist.add(tfac);
             }
+			if(faclist.size()==0) {
+				return ERROR;
+			}
 			try {
 	            if (rs!= null) {
 	              rs.close();

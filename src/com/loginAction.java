@@ -1,6 +1,18 @@
 package com;
-import com.opensymphony.xwork2.ActionSupport;
 
+import java.sql.Date;
+import java.awt.print.Printable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Map;
+
+import org.apache.struts2.ServletActionContext;
+
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.inject.Context;
 public class loginAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
@@ -12,6 +24,10 @@ public class loginAction extends ActionSupport {
 		this.xxx = xxx;
 	}
 	public String execute() throws Exception{
+		ActionContext ac=ActionContext.getContext();
+		Map<String, Object> session=ac.getSession();
+		session.put("username", xxx);
+		this.setXxx((String)session.get("username"));
 	    return SUCCESS;
 	}
      
