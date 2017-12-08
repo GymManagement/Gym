@@ -8,9 +8,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="loginAction.action">
-输入姓名：<input type="text" name="xxx">
-<input type=submit value="提交"/>
+
+<form action="myplantest.action">
+身高(m):<input type="text" name="changedheight">
+体重(kg):<input type="text" name="changedweight">
+
+
+<br>
+
+
+<input type=submit value="提交结果"/>
 </form>
+<br>
+
 </body>
 </html>

@@ -1,15 +1,11 @@
 package com;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Map;
-
+import java.math.BigDecimal;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class myplanAction extends ActionSupport {
+public class myplanaimAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 	private String height;
@@ -17,10 +13,19 @@ public class myplanAction extends ActionSupport {
 	private String testresult;
 	private String suggestfreq;
 	private String aimweight;
+	private String changedaimweight;
 	
 	private Connection conn = null;
     private Statement stmt = null;
     private ResultSet rs = null;
+	
+	public String getChangedaimweight() {
+		return changedaimweight;
+	}
+
+	public void setChangedaimweight(String changedaimweight) {
+		this.changedaimweight = changedaimweight;
+	}
 
 	public String getAimweight() {
 		return aimweight;
@@ -80,11 +85,19 @@ public class myplanAction extends ActionSupport {
 			rs = stmt.executeQuery(sql);
 			while (rs.next()){
 				if((rs.getString("电话")).equals(un)) {
-					setWeight((rs.getBigDecimal("体重")).toString());
+					
+					sql= "update 普通用户  set 目标体重 = ? where 电话 = ?";
+					PreparedStatement pst = conn.prepareStatement(sql);
+					BigDecimal bd=new BigDecimal(getChangedaimweight());
+		            pst.setBigDecimal(1,bd);
+		            pst.setString(2,un);
+		            pst.executeUpdate();
+		            
+		            setWeight((rs.getBigDecimal("体重")).toString());
 					setHeight(rs.getBigDecimal("身高").toString());
 					setTestresult(rs.getString("体型"));
-					setAimweight(rs.getBigDecimal("目标体重").toString());
-					setSuggestfreq(rs.getString("周期"));
+					setAimweight(getChangedaimweight());
+					setSuggestfreq(String.valueOf(rs.getInt("周期")));
 				}
             }
 			try {

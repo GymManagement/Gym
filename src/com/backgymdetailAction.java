@@ -13,25 +13,17 @@ import java.util.List;
 import com.gymdetailstuffAction.facility;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class searchGymAction extends ActionSupport {
+public class backgymdetailAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
-	private int nameOfGym;
+	private String gym;
 	private String position;
 	private String price;
 	private String time;
 	private String tag;
 	private String score;
 	private String tele;
-	private String name;
-	
-	public String getName() {
-		return name;
-	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	private Connection conn = null;
     private Statement stmt = null;
@@ -102,12 +94,12 @@ public class searchGymAction extends ActionSupport {
 		this.score = score;
 	}
 
-	public int getNameOfGym() {
-		return nameOfGym;
+	public String getGym() {
+		return gym;
 	}
 
-	public void setNameOfGym(int nameOfGym) {
-		this.nameOfGym = nameOfGym;
+	public void setGym(String gym) {
+		this.gym = gym;
 	}
 
 	private List<facility> faclist =new ArrayList<facility>();
@@ -132,24 +124,23 @@ public class searchGymAction extends ActionSupport {
 			String url="jdbc:mysql://localhost:3306/体育馆基本信息?characterEncoding=utf8&useSSL=false";
 			conn = DriverManager.getConnection(url,"root","123456");
 			stmt = conn.createStatement(); //创建Statement对象	
-			String sql= "select * from 所有体育馆 where 编号='"+getNameOfGym()+"'";
+			String sql= "select * from 所有体育馆 where 名称='"+getGym()+"'";
 			
 			rs = stmt.executeQuery(sql);
 			if(rs.next()){
-				setNameOfGym(getNameOfGym());
+				setGym(getGym());
 					setPosition(rs.getString("位置"));
 					setPrice(rs.getString("价格"));
 					setTime(rs.getString("时间"));
 					setTag(rs.getString("标签"));
 					setTele(rs.getString("联系电话"));
 					setScore(String.valueOf(rs.getBigDecimal("平均得分")));	
-					name=rs.getString("名称");
             }
 			else {
 				return ERROR;
 			}
 
-			sql= "select * from 设施信息 where 体育馆='"+name+"'";
+			sql= "select * from 设施信息 where 体育馆='"+getGym()+"'";
 			rs = stmt.executeQuery(sql);
 			List<facility> tfaclist =new ArrayList<facility>();
 			while(rs.next()){

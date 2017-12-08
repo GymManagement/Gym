@@ -6,22 +6,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>userhomepage</title>
 </head>
 <body>
 
 你好，
-<s:property value="xxx"/>
+<a href="changeInfo?xxx=<s:property value="xxx"/>"><s:property value="xxx"/></a>
 <br>
+
 
 <form action="searchGym.action">
 你想查看什么体育馆呢
-<input type="text" name="nameOfGym">
-<input type=submit value="查看"/>
+<s:select headerKey="-1" headerValue="请选择" name="nameOfGym" list="gymlist"  listKey="index" listValue="name"/> 
+
+<input type=submit value="确定"/>
 </form>
 <br>
 
-<a href="myPlan?username=<s:property value="xxx"/>">我的健身计划</a>
+<a href="myplan?username=<s:property value="xxx"/>">我的健身计划</a>
 <br>
 
 如果需要推荐，点击
