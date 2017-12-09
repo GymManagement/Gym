@@ -1,8 +1,18 @@
 package com;
 
-import java.sql.*;
-import java.util.Map;
 import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Map;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 //import java.sql.Statement;
@@ -15,46 +25,106 @@ public class getgameAction extends ActionSupport {
 	private Connection conn = null;
     private Statement stmt = null;
     private ResultSet rs = null;
-    private String data;
-    private String introduce;    
-    private String location;
-    private String link;
+    private String nameOfGym;
     
-	public String getLink() {
-		return link;
+    public String getNameOfGym() {
+		return nameOfGym;
 	}
 
-	public void setLink(String link) {
-		this.link = link;
+	public void setNameOfGym(String nameOfGym) {
+		this.nameOfGym = nameOfGym;
 	}
 
-	public String getLocation() {
-		return location;
+	public class game{
+    	private String data;
+        private String introduce;    
+        private String location;
+        private String name;
+        private int index;
+		public String getData() {
+			return data;
+		}
+		public void setData(String data) {
+			this.data = data;
+		}
+		public String getIntroduce() {
+			return introduce;
+		}
+		public void setIntroduce(String introduce) {
+			this.introduce = introduce;
+		}
+		public String getLocation() {
+			return location;
+		}
+		public void setLocation(String location) {
+			this.location = location;
+		}
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public int getIndex() {
+			return index;
+		}
+		public void setIndex(int index) {
+			this.index = index;
+		}
+     
+    }
+    private List<game> gamelist = new ArrayList<game>();
+    
+	public List<game> getGamelist() {
+		return gamelist;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setGamelist(List<game> gamelist) {
+		this.gamelist = gamelist;
+	}
+	private String newname;
+	private String newlocation;
+	private String newdata;
+	private String newintroduce;
+	
+	
+	public String getNewname() {
+		return newname;
 	}
 
-	public String getData() {
-		return data;
+	public void setNewname(String newname) {
+		this.newname = newname;
 	}
 
-	public void setData(String data) {
-		this.data = data;
+	public String getNewlocation() {
+		return newlocation;
 	}
 
-	public String getIntroduce() {
-		return introduce;
+	public void setNewlocation(String newlocation) {
+		this.newlocation = newlocation;
 	}
 
-	public void setIntroduce(String introduce) {
-		this.introduce = introduce;
+	public String getNewdata() {
+		return newdata;
+	}
+
+	public void setNewdata(String newdata) {
+		this.newdata = newdata;
+	}
+
+	public String getNewintroduce() {
+		return newintroduce;
+	}
+
+	public void setNewintroduce(String newintroduce) {
+		this.newintroduce = newintroduce;
 	}
 
 	public String execute() throws Exception{
-		Class.forName("com.mysql.jdbc.Driver");
-		System.out.println("成功加载MySQL驱动程序");
+		ActionContext ac=ActionContext.getContext();
+		Map<String, Object> session=ac.getSession();
+		String nn=(String)session.get("gym");
+		this.setNameOfGym(nn);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");     //加载MYSQL JDBC驱动程序   
 			System.out.println("Success loading Mysql Driver!");
@@ -64,22 +134,43 @@ public class getgameAction extends ActionSupport {
 		try {
 			String url="jdbc:mysql://localhost:3306/体育馆基本信息?characterEncoding=utf8&useSSL=false";
 			conn = DriverManager.getConnection(url,"root","123456");
+			//添加信息
 			stmt = conn.createStatement(); //创建Statement对象	
 			String sql = "select * from 比赛信息";
 			rs=stmt.executeQuery(sql);
 			int i=1;
 			while(rs.next()) {
-				i++;
+				i=rs.getInt("编号");
 			}
-			sql = "INSERT INTO 比赛信息(编号,时间,内容,地点,报名链接) VALUES(?,?,?,?,?)";
+			i++;
+			sql = "INSERT INTO 比赛信息(编号,时间,内容,地点,体育馆,名称) VALUES(?,?,?,?,?,?)";
 			PreparedStatement pst = conn.prepareStatement(sql);
 			pst.setInt(1,i);
-		    pst.setString(2,getData());
-		    pst.setString(3,getIntroduce());
-		    pst.setString(4,getLocation());
-		    pst.setString(5,getLink());
+		    pst.setString(2,getNewdata());
+		    pst.setString(3,getNewintroduce());
+		    pst.setString(4,getNewlocation());
+		    pst.setString(5,nn);
+		    pst.setString(6,getNewname());
 		    //pst.setBlob(LOAD_FILE('/tmp/image.png'));
 		    pst.executeUpdate();
+		    
+		    //输出信息
+			conn = DriverManager.getConnection(url,"root","123456");
+			stmt = conn.createStatement(); //创建Statement对象	
+			sql = "select * from 比赛信息 where 体育馆='"+nn+"'";
+			rs=stmt.executeQuery(sql);
+			List<game> tlist = new ArrayList<game>();
+			while(rs.next()) {
+				game tgame=new game();
+				tgame.setData(rs.getString("时间"));
+				tgame.setIndex(rs.getInt("编号"));
+				tgame.setIntroduce(rs.getString("内容"));
+				tgame.setLocation(rs.getString("地点"));
+				tgame.setName(rs.getString("名称"));
+				tlist.add(tgame);
+			}
+			this.setGamelist(tlist);
+			
 			try {
 	            if (rs!= null) {
 	              rs.close();

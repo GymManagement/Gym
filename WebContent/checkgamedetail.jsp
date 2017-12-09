@@ -13,33 +13,33 @@
 <s:property value="nameOfGym"/>
 体育馆
 <br><br>
-添加比赛：
+修改信息
 <br>
-<form action="biggame.action">
-名称：
+<form action="gymchangegame.action">
+<input name="index" type="hidden" value=<s:property value="index"/>>
+名称：<s:property value="name"/><br>
 <input type="text" name="newname" />
-<br><br>
-日期：
+<br>
+日期：<s:property value="data"/><br>
 <input type="text" name="newdata" />
-<br><br>
-地点：
+<br>
+地点：<s:property value="location"/><br>
 <input type="text" name="newlocation" />
-<br><br>
-介绍：
+<br>
+介绍：<s:property value="introduce"/><br>
 <textarea name="newintroduce" cols="30" rows="3"></textarea>
-<br><br>
 <input type="submit" value="提交" />
 </form>
 <br>
 
-查询或修改比赛信息
-<form action="checkgamedetail.action">
-<s:select headerKey="-1" headerValue="请选择" name="index" list="gamelist"  listKey="index" listValue="name"/> 
-<input type=submit value="确定"/>
-</form>
+报名人员：
 
+<s:iterator value="signup" var='i'>
+<s:property value="i"/>
+<br>
+</s:iterator>
 
-<form action="backstuffhome.action">
+<form action="backcheckgame.action">
 <input type="submit" value="返回">
 </form>
 </body>

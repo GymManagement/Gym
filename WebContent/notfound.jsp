@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-没有这个体育馆
-<form action="backHomepage.action">
-<input type=submit value="返回"/>
+出错啦
+<form action="back.action">
+<input type=submit value="返回首页"/>
 <br>
 </form>
 </body>

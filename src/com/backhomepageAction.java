@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.LoginuserAction.allgym;
+import com.LoginuserAction.game;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.searchGymAction.facility;
@@ -54,7 +55,53 @@ public class backhomepageAction extends ActionSupport {
 		public void setGymlist(List<allgym> gymlist) {
 			this.gymlist = gymlist;
 		}
- 
+		public class game{
+	    	private String data;
+	        private String introduce;    
+	        private String location;
+	        private String name;
+	        private int index;
+			public String getData() {
+				return data;
+			}
+			public void setData(String data) {
+				this.data = data;
+			}
+			public String getIntroduce() {
+				return introduce;
+			}
+			public void setIntroduce(String introduce) {
+				this.introduce = introduce;
+			}
+			public String getLocation() {
+				return location;
+			}
+			public void setLocation(String location) {
+				this.location = location;
+			}
+			public String getName() {
+				return name;
+			}
+			public void setName(String name) {
+				this.name = name;
+			}
+			public int getIndex() {
+				return index;
+			}
+			public void setIndex(int index) {
+				this.index = index;
+			}
+	     
+	    }
+	    private List<game> gamelist = new ArrayList<game>();
+	    
+		public List<game> getGamelist() {
+			return gamelist;
+		}
+
+		public void setGamelist(List<game> gamelist) {
+			this.gamelist = gamelist;
+		}
 	public String execute() throws Exception{
 		ActionContext ac=ActionContext.getContext();
 		Map<String, Object> session=ac.getSession();
@@ -81,10 +128,20 @@ public class backhomepageAction extends ActionSupport {
 				tgymlist.add(tgym);
             }
 			this.setGymlist(tgymlist);
-			System.out.println("t的name:"+tgymlist.get(0).name);
-			System.out.println("t的index:"+tgymlist.get(0).index);
-			System.out.println("name:"+(this.getGymlist()).get(0).name);
-			System.out.println("index:"+(this.getGymlist()).get(0).index);
+			//获取所有比赛列表
+			sql = "select * from 比赛信息";
+			rs=stmt.executeQuery(sql);
+			List<game> tlist = new ArrayList<game>();
+			while(rs.next()) {
+				game tgame=new game();
+				tgame.setData(rs.getString("时间"));
+				tgame.setIndex(rs.getInt("编号"));
+				tgame.setIntroduce(rs.getString("内容"));
+				tgame.setLocation(rs.getString("地点"));
+				tgame.setName(rs.getString("名称"));
+				tlist.add(tgame);
+			}
+			this.setGamelist(tlist);
 			try {
 	            if (rs!= null) {
 	              rs.close();

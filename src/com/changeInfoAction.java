@@ -97,7 +97,7 @@ public class changeInfoAction extends ActionSupport {
 			while (rs.next()){
 				if((rs.getString("密码")).equals(getPassword()) && (rs.getString("电话")).equals((String)session.get("username"))) {
 					System.out.println("密码输对了");
-					if(getNewname()!=null) {
+					if(!getNewname().equals("")) {
 						sql= "update 普通用户  set 姓名 = ? where 电话 = ?";
 						pst = conn.prepareStatement(sql);
 			            pst.setString(1,getNewname());
@@ -105,7 +105,7 @@ public class changeInfoAction extends ActionSupport {
 			            pst.executeUpdate();
 			            System.out.println("改了名字");
 					}
-					if(getNewpassword()!=null) {
+					if(!getNewpassword().equals("")) {
 						sql= "update 普通用户  set 密码=? where 电话=?";
 						pst = conn.prepareStatement(sql);
 			            pst.setString(1,getNewpassword());
@@ -113,7 +113,7 @@ public class changeInfoAction extends ActionSupport {
 			            pst.executeUpdate();
 			            System.out.println("改了密码");
 					}
-					if(getNewemail()!=null) {
+					if(!getNewemail().equals("")) {
 						sql= "update 普通用户  set 邮箱=? where 电话=?";
 						pst = conn.prepareStatement(sql);
 			            pst.setString(1,getNewemail());

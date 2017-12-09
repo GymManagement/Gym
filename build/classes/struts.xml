@@ -11,6 +11,10 @@
             <result>welcome.jsp</result>
         </action>
         
+        <action name="back" >
+            <result>welcome.jsp</result>
+        </action>
+        
         <action name="login">
         <result >/identification.jsp</result>          
         </action>
@@ -59,6 +63,7 @@
         
         <action name="loginAction" class="com.loginAction">
             <result>/userHomepage.jsp</result>
+            <result name="error">notfound.jsp</result>
         </action>
         
         <action name="searchGym" class="com.searchGymAction">
@@ -67,35 +72,43 @@
         </action>
         
         <action name="myplan" class="com.myplanAction">
-            <result>/MyPlan.jsp</result>
+            <result name="success">/MyPlan.jsp</result>
+            <result name="error">notfound.jsp</result>
         </action>
         
         <action name="myplantest" class="com.myplantestAction">
-            <result>/MyPlan.jsp</result>
+            <result name="success">/MyPlan.jsp</result>
+            <result name="error">notfound.jsp</result>
         </action>
         
         <action name="myplanaim" class="com.myplanaimAction">
-            <result>/MyPlan.jsp</result>
+            <result name="success">/MyPlan.jsp</result>
+            <result name="error">notfound.jsp</result>
         </action>
         
         <action name="backHomepage" class="com.backhomepageAction">
-            <result>/userHomepage.jsp</result>
+            <result name="success">/userHomepage.jsp</result>
+            <result name="error">notfound.jsp</result>
         </action>
         
         <action name="rankingGym" class="com.rankingAction">
-            <result>/rankingGym.jsp</result>
+            <result name="success">/rankingGym.jsp</result>
+            <result name="error">notfound.jsp</result>
         </action>
         
         <action name="backLogin" class="com.helloAction">
-            <result>/welcome.jsp</result>
+            <result name="success">/welcome.jsp</result>
+            <result name="error">notfound.jsp</result>
         </action>
         
         <action name="test" class="com.helloAction">
-            <result>/test.jsp</result>
+            <result name="success">/test.jsp</result>
+            <result name="error">notfound.jsp</result>
         </action>
         
         <action name="changeInfo" class="com.loginAction">
-            <result>/changeInfo.jsp</result>
+            <result name="success">/changeInfo.jsp</result>
+            <result name="error">notfound.jsp</result>
         </action>
                
         <action name="backchangeinfo" class="com.changeInfoAction">
@@ -105,67 +118,141 @@
         
         <action name="score" class="com.scoreAction">
             <result name="success">/gymdetail.jsp</result>
-        </action>
-        
-        <action name="gyminfo" class="com.gyminfoAction">
-            <result name="success">/index.jsp</result>
+            <result name="error">notfound.jsp</result>
         </action>
         
         <action name="biggame" class="com.getgameAction">
-            <result name="success">/gamedetail.jsp</result>
+            <result name="success">/gymbiggame.jsp</result>
+            <result name="error">notfound.jsp</result>
         </action>
         
         <action name="welcomegame" class="com.welcomegameAction">
             <result name="success">/gamedetail.jsp</result>
+            <result name="error">notfound.jsp</result>
         </action>
         
         <action name="backwelcome">
-            <result>/welcome.jsp</result>
+            <result name="success">/welcome.jsp</result>
+            <result name="error">notfound.jsp</result>
         </action>
                 
-        <action name="facinum" class="com.facinumAction">  
-            <result name="login">gymsheshi.jsp</result>  
+        <action name="facinum" class="com.changefacAction">  
+            <result name="input">gymsheshi.jsp</result>  
             <result name="success">gymsheshi.jsp</result>  
+            <result name="error">notfound.jsp</result>
         </action>
                 
         <action name="order" class="com.orderAction">  
-            <result>order.jsp</result>  
+            <result name="success">order.jsp</result>  
+            <result name="error">notfound.jsp</result>
         </action>
         
         <action name="backgymdetail" class="com.backgymdetailAction">  
-            <result>gymdetail.jsp</result>  
+            <result name="success">gymdetail.jsp</result>  
+            <result name="error">notfound.jsp</result>
         </action>
         
-        <action name="checkfac" class="com.gymdetailstuffAction">  
-            <result>checkfac.jsp</result>  
-        </action>
         
-        <action name="backstuff">  
-            <result>index.jsp</result>  
+        <action name="backstuffhome" class="com.backstuffhomeAction">  
+            <result name="success">index.jsp</result>  
+            <result name="error">notfound.jsp</result>
         </action>
         
         <action name="downgym" class="com.bookdetailAction">  
-            <result>bookdetail.jsp</result>  
+            <result name="success">bookdetail.jsp</result>  
+            <result name="error">notfound.jsp</result>
         </action>
         
         <action name="originplan" class="com.originplanAction">  
-            <result>bookdetail.jsp</result>  
+            <result name="success">bookdetail.jsp</result> 
+            <result name="error">notfound.jsp</result> 
         </action>
         
         <action name="orderbygym" class="com.orderbygymAction">  
-            <result>order.jsp</result>  
+            <result name="success">order.jsp</result>  
+            <result name="error">notfound.jsp</result>
         </action>
         
         <action name="deleteplan" class="com.deleteplanAction">  
-            <result>bookdetail.jsp</result>  
+            <result name="success">bookdetail.jsp</result>  
+            <result name="error">notfound.jsp</result>
         </action>
         
         <action name="backmyplan" class="com.backmyplanAction">  
-            <result>MyPlan.jsp</result>  
+            <result name="success">MyPlan.jsp</result>  
+            <result name="error">notfound.jsp</result>
         </action>
         
         <action name="searchfac" class="com.searchfacAction">  
-            <result>rankingGym.jsp</result>  
+            <result name="success">rankingGym.jsp</result>  
+            <result name="error">notfound.jsp</result>
+        </action>
+        
+        <action name="checkfac" class="com.checkfacAction">  
+            <result name="success">gymsheshi.jsp</result>  
+            <result name="error">notfound.jsp</result>
+        </action>
+        
+        <action name="checkinf" class="com.checkinfAction">  
+            <result name="success">gyminformation.jsp</result>  
+            <result name="error">notfound.jsp</result>
+        </action>
+        
+        <action name="checkgame" class="com.checkgameAction">  
+            <result name="success">gymbiggame.jsp</result>  
+            <result name="error">notfound.jsp</result>
+        </action>
+        
+        <action name="gyminfo" class="com.gyminfoAction">
+            <result name="success">/gyminformation.jsp</result>
+            <result name="error">notfound.jsp</result>
+        </action>
+        
+        <action name="gymchangefac" class="com.changefacAction">
+            <result name="success">/gymsheshi.jsp</result>
+            <result name="error">notfound.jsp</result>
+        </action>
+        
+        <action name="gymchangegame" class="com.changegameAction">
+            <result name="success">/checkgamedetail.jsp</result>
+            <result name="error">notfound.jsp</result>
+        </action>
+        
+        <action name="findfac" class="com.findfacAction">
+            <result name="success">/gymsheshi.jsp</result>
+            <result name="error">notfound.jsp</result>
+        </action>
+        
+        <action name="checkgamedetail" class="com.checkgamedetailAction">
+            <result name="success">/checkgamedetail.jsp</result>
+            <result name="error">notfound.jsp</result>
+        </action>
+        
+        <action name="backcheckgame" class="com.checkgameAction">
+            <result name="success">/gymbiggame.jsp</result>
+            <result name="error">notfound.jsp</result>
+        </action>
+        
+        <action name="searchusergame" class="com.searchusergameAction">
+            <result name="success">/searchusergame.jsp</result>
+            <result name="error">notfound.jsp</result>
+        </action>
+        
+        <action name="usersignup" class="com.usersignupAction">
+            <result name="success">/searchusergame.jsp</result>
+            <result name="error">notfound.jsp</result>
+            <result name="input">searchusergame.jsp</result>
+        </action>
+        
+        <action name="usergameone" class="com.usergameoneAction">
+            <result name="success">/usergameone.jsp</result>
+            <result name="error">notfound.jsp</result>
+        </action>
+        
+         <action name="usersignupone" class="com.usersignuponeAction">
+            <result name="success">/usergameone.jsp</result>
+            <result name="error">notfound.jsp</result>
+            <result name="input">searchusergame.jsp</result>
         </action>
     </package>
     

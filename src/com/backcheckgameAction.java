@@ -1,35 +1,41 @@
 package com;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.text.SimpleDateFormat;
+
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
-
-import com.gymdetailstuffAction.facility;
+import java.util.Map;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import com.searchGymAction.game;
+//import java.sql.Statement;
 
-public class backgymdetailAction extends ActionSupport {
+
+public class backcheckgameAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
-	private String gym;
-	private String position;
-	private String price;
-	private String time;
-	private String tag;
-	private String score;
-	private String tele;
-
-
+	public Connection connect;
 	private Connection conn = null;
     private Statement stmt = null;
     private ResultSet rs = null;
-    public class game{
+    private String nameOfGym;
+    
+    public String getNameOfGym() {
+		return nameOfGym;
+	}
+
+	public void setNameOfGym(String nameOfGym) {
+		this.nameOfGym = nameOfGym;
+	}
+
+	public class game{
     	private String data;
         private String introduce;    
         private String location;
@@ -76,92 +82,49 @@ public class backgymdetailAction extends ActionSupport {
 	public void setGamelist(List<game> gamelist) {
 		this.gamelist = gamelist;
 	}
-    public class facility{
-    	private String fac;
-    	private String introduction;
-		public String getFac() {
-			return fac;
-		}
-		public void setFac(String fac) {
-			this.fac = fac;
-		}
-		public String getIntroduction() {
-			return introduction;
-		}
-		public void setIntroduction(String introduction) {
-			this.introduction = introduction;
-		}
-		
-    }
-    
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
-	}
-
-	public String getTele() {
-		return tele;
-	}
-
-	public void setTele(String tele) {
-		this.tele = tele;
-	}
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
-	public String getTime() {
-		return time;
-	}
-
-	public void setTime(String time) {
-		this.time = time;
-	}
-
-	public String getTag() {
-		return tag;
-	}
-
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
-
-	public String getScore() {
-		return score;
-	}
-
-	public void setScore(String score) {
-		this.score = score;
-	}
-
-	public String getGym() {
-		return gym;
-	}
-
-	public void setGym(String gym) {
-		this.gym = gym;
-	}
-
-	private List<facility> faclist =new ArrayList<facility>();
+	private String newname;
+	private String newlocation;
+	private String newdata;
+	private String newintroduce;
 	
 	
-	public List<facility> getFaclist() {
-		return faclist;
+	public String getNewname() {
+		return newname;
 	}
 
-	public void setFaclist(List<facility> faclist) {
-		this.faclist = faclist;
+	public void setNewname(String newname) {
+		this.newname = newname;
+	}
+
+	public String getNewlocation() {
+		return newlocation;
+	}
+
+	public void setNewlocation(String newlocation) {
+		this.newlocation = newlocation;
+	}
+
+	public String getNewdata() {
+		return newdata;
+	}
+
+	public void setNewdata(String newdata) {
+		this.newdata = newdata;
+	}
+
+	public String getNewintroduce() {
+		return newintroduce;
+	}
+
+	public void setNewintroduce(String newintroduce) {
+		this.newintroduce = newintroduce;
 	}
 
 	public String execute() throws Exception{
+		ActionContext ac=ActionContext.getContext();
+		Map<String, Object> session=ac.getSession();
+		String nn=(String)session.get("gym");
+		this.setNameOfGym(nn);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");     //加载MYSQL JDBC驱动程序   
 			System.out.println("Success loading Mysql Driver!");
@@ -171,35 +134,30 @@ public class backgymdetailAction extends ActionSupport {
 		try {
 			String url="jdbc:mysql://localhost:3306/体育馆基本信息?characterEncoding=utf8&useSSL=false";
 			conn = DriverManager.getConnection(url,"root","123456");
+			//添加信息
 			stmt = conn.createStatement(); //创建Statement对象	
-			String sql= "select * from 所有体育馆 where 名称='"+getGym()+"'";
-			
-			rs = stmt.executeQuery(sql);
-			if(rs.next()){
-				setGym(getGym());
-					setPosition(rs.getString("位置"));
-					setPrice(rs.getString("价格"));
-					setTime(rs.getString("时间"));
-					setTag(rs.getString("标签"));
-					setTele(rs.getString("联系电话"));
-					setScore(String.valueOf(rs.getBigDecimal("平均得分")));	
-            }
-			else {
-				return ERROR;
+			String sql = "select * from 比赛信息";
+			rs=stmt.executeQuery(sql);
+			int i=1;
+			while(rs.next()) {
+				i=rs.getInt("编号");
 			}
-
-			sql= "select * from 设施信息 where 体育馆='"+getGym()+"'";
-			rs = stmt.executeQuery(sql);
-			List<facility> tfaclist =new ArrayList<facility>();
-			while(rs.next()){
-				facility tfac=new facility();
-				tfac.setFac(rs.getString("设施名称"));
-				tfac.setIntroduction(rs.getString("简介"));
-				tfaclist.add(tfac);
-			}
-			this.setFaclist(tfaclist);
-			//获取所有比赛列表
-			sql = "select * from 比赛信息 where 体育馆='"+getGym()+"'";
+			i++;
+			sql = "INSERT INTO 比赛信息(编号,时间,内容,地点,体育馆,名称) VALUES(?,?,?,?,?,?)";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setInt(1,i);
+		    pst.setString(2,getNewdata());
+		    pst.setString(3,getNewintroduce());
+		    pst.setString(4,getNewlocation());
+		    pst.setString(5,nn);
+		    pst.setString(6,getNewname());
+		    //pst.setBlob(LOAD_FILE('/tmp/image.png'));
+		    pst.executeUpdate();
+		    
+		    //输出信息
+			conn = DriverManager.getConnection(url,"root","123456");
+			stmt = conn.createStatement(); //创建Statement对象	
+			sql = "select * from 比赛信息 where 体育馆='"+nn+"'";
 			rs=stmt.executeQuery(sql);
 			List<game> tlist = new ArrayList<game>();
 			while(rs.next()) {
@@ -212,6 +170,7 @@ public class backgymdetailAction extends ActionSupport {
 				tlist.add(tgame);
 			}
 			this.setGamelist(tlist);
+			
 			try {
 	            if (rs!= null) {
 	              rs.close();
@@ -235,5 +194,7 @@ public class backgymdetailAction extends ActionSupport {
 			return ERROR;
 		}
 	}
-     
-}
+	}
+
+
+

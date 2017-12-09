@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@taglib prefix="s" uri="/struts-tags" %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,36 +16,41 @@
         word-spacing: 180px;
     }
 </style>
-<input type="button" onclick="window.location='gyminformation.jsp'" value="体育馆基本信息">
-<input type="button" onclick="window.location='gymsheshi.jsp'" value="体育馆设施情况">
-<input type="button" onclick="window.location='gymbiggame.jsp'" value="重大比赛信息">
-<br><br>
+<s:property value="nowname"/>
+体育馆
+<br>
+
+
 
 <form action="gyminfo.action">
-体育馆名：
-<input type="text" name="name" /> 
+
+详细地址：<s:property value="nowposition"/>
+<input type="text" name="newposition" />
 <br><br>
-详细地址：
-<input type="text" name="address" />
+
+价格范围：<s:property value="nowprice"/>
+<input type="text" name="newprice" /> 
 <br><br>
-价格范围：
-<input type="text" name="price" /> 
+
+联系电话：<s:property value="nowtele"/>
+<input type="text" name="newtele" />
 <br><br>
-器材种类：
-<input type="text" name="kind" />
+
+开放时间：<s:property value="nowtime"/>
+<input type="text" name="newtime" /> 
 <br><br>
-重要标签：
-<input type="text" name="tag" />
-<br><br>
-联系电话：
-<input type="text" name="tele" />
-<br><br>
-开放时间：
-<input type="text" name="time" /> 
-<br><br>
+
+评价人数：<s:property value="nowscorenum"/>
+<br>
+
+评分：<s:property value="nowscore"/>
+<br>
 <input type="submit" value="确认" />
 </form>
-<input type="button" onclick="window.location='index.jsp'" value="返回">
+<br>
+<form action="backstuffhome.action">
+<input type="submit" value="返回主页面">
+</form>
 </center>
 </body>
 </html>

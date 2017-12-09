@@ -41,6 +41,8 @@
 <br>
 </form>
 <br><br>
+
+
 <form action="score.action">
 <input name="gym" type="hidden" value=<s:property value="name"/>>
 评分:
@@ -53,6 +55,15 @@
 <br>
 </form>
 <br><br>
+
+<form action="searchusergame.action">
+查看比赛信息
+<input name="gymgetname" type="hidden" value=<s:property value="name"/>>
+<s:select headerKey="-1" headerValue="请选择" name="index" list="gamelist"  listKey="index" listValue="name"/>
+<input type=submit value="确定"/>
+</form>
+
+
 <form action="backHomepage.action">
 <input type=submit value="返回首页"/>
 <br>

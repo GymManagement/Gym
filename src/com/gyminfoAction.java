@@ -14,68 +14,100 @@ public class gyminfoAction extends ActionSupport {
 	private Connection conn = null;
     private Statement stmt = null;
     private ResultSet rs = null;
-    private String name;
-    private String address;
-    private String price;
-    private String kind;
-    private String time;
-    private String tag;
-    private String tele;
-    
-    public String getTele() {
-		return tele;
+ //   private String newname;
+    private String newposition;
+    private String newprice;
+    private String newtime;
+    private String newtele;
+    private String nowposition;
+	private String nowprice;
+	private String nowtime;
+	private String nowscore;
+	private int nowscorenum;
+	private String nowtele;
+	private String nowname;
+	
+	
+	public String getNowposition() {
+		return nowposition;
+	}
+	public void setNowposition(String nowposition) {
+		this.nowposition = nowposition;
+	}
+	public String getNowprice() {
+		return nowprice;
+	}
+	public void setNowprice(String nowprice) {
+		this.nowprice = nowprice;
+	}
+	public String getNowtime() {
+		return nowtime;
+	}
+	public void setNowtime(String nowtime) {
+		this.nowtime = nowtime;
+	}
+	public String getNowscore() {
+		return nowscore;
+	}
+	public void setNowscore(String nowscore) {
+		this.nowscore = nowscore;
+	}
+	public int getNowscorenum() {
+		return nowscorenum;
+	}
+	public void setNowscorenum(int nowscorenum) {
+		this.nowscorenum = nowscorenum;
+	}
+	public String getNowtele() {
+		return nowtele;
+	}
+	public void setNowtele(String nowtele) {
+		this.nowtele = nowtele;
+	}
+	public String getNowname() {
+		return nowname;
+	}
+	public void setNowname(String nowname) {
+		this.nowname = nowname;
+	}
+	/*public String getNewname() {
+		return newname;
 	}
 
-	public void setTele(String tele) {
-		this.tele = tele;
+	public void setNewname(String newname) {
+		this.newname = newname;
+	}*/
+
+	public String getNewposition() {
+		return newposition;
 	}
 
-	public String getTag() {
-		return tag;
+	public void setNewposition(String newposition) {
+		this.newposition = newposition;
 	}
 
-	public void setTag(String tag) {
-		this.tag = tag;
+	public String getNewprice() {
+		return newprice;
 	}
 
-	public String getName() {
-		return name;
+	public void setNewprice(String newprice) {
+		this.newprice = newprice;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getNewtime() {
+		return newtime;
 	}
 
-	public String getAddress() {
-		return address;
+	public void setNewtime(String newtime) {
+		this.newtime = newtime;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public String getNewtele() {
+		return newtele;
 	}
 
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
-	public String getKind() {
-		return kind;
-	}
-
-	public void setKind(String kind) {
-		this.kind = kind;
-	}
-
-	public String getTime() {
-		return time;
-	}
-
-	public void setTime(String time) {
-		this.time = time;
+	public void setNewtele(String newtele) {
+		this.newtele = newtele;
 	}
 
 	public String execute() throws Exception{
@@ -88,31 +120,80 @@ public class gyminfoAction extends ActionSupport {
 			return ERROR;
 		}
 		try {
+			ActionContext ac=ActionContext.getContext();
+			Map<String, Object> session=ac.getSession();
+			String nn=(String)session.get("gym");
 			String url="jdbc:mysql://localhost:3306/体育馆基本信息?characterEncoding=utf8&useSSL=false";
 			conn = DriverManager.getConnection(url,"root","123456");
-			stmt = conn.createStatement(); //创建Statement对象	
-			String sql="select * from 所有体育馆";
+			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE); //创建Statement对象	
+		/*	String sql="select * from 所有体育馆 where 名称='"+getNewname()+"'";
 			rs = stmt.executeQuery(sql);
-			int flag=0;
-			int i=1;
-			while (rs.next()){
-				if(rs.getString("名称").equals(getName())) {
-					flag=1;
-					ActionContext ac=ActionContext.getContext();
-					Map<String, Object> session=ac.getSession();
-					sql= "update 所有体育馆  set 价格=?,位置=?,时间=?,设施种类=?,名称=? where 名称 ='"+(String)session.get("gym")+"'";
+			if(rs.next()) {
+				System.out.println("该体育馆名已被占用");
+				return INPUT;
+			}*/
+			String sql="select * from 所有体育馆 where 名称='"+nn+"'";
+			rs = stmt.executeQuery(sql);
+			if(rs.next()) {
+			/*	if(!(getNewname().equals(null))) {
+					rs.updateString("名称", getNewname());
+					rs.updateRow();
+				}	*/				
+				if(!(getNewposition().equals(null)) && !(getNewposition().equals(""))) {
+					rs.updateString("位置", getNewposition());
+					rs.updateRow();
+				}					
+			}
+			sql="select * from 所有体育馆 where 名称='"+nn+"'";
+			rs = stmt.executeQuery(sql);
+			if(rs.next()) {			
+				if(!(getNewprice().equals(null)) && !(getNewprice().equals(""))) {
+					rs.updateString("价格", getNewprice());
+					rs.updateRow();
+				}
+			}
+			sql="select * from 所有体育馆 where 名称='"+nn+"'";
+			rs = stmt.executeQuery(sql);
+			if(rs.next()) {
+				if(!(getNewtele().equals(null)) && !(getNewtele().equals(""))) {
+					rs.updateString("联系电话", getNewtele());
+					rs.updateRow();
+				}
+			}
+			sql="select * from 所有体育馆 where 名称='"+nn+"'";
+			rs = stmt.executeQuery(sql);
+			if(rs.next()) {
+				if(!(getNewtime().equals(null)) && !(getNewtime().equals(""))) {
+					rs.updateString("时间", getNewtime());
+					rs.updateRow();
+				}
+			}
+			conn = DriverManager.getConnection(url,"root","123456");
+			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);//创建Statement对象	
+			sql= "select * from 所有体育馆 where 名称='"+(String)session.get("gym")+"'";
+			this.setNowname((String)session.get("gym"));
+			rs = stmt.executeQuery(sql);
+			if(rs.next()){
+					setNowposition(rs.getString("位置"));
+					setNowprice(rs.getString("价格"));
+					setNowtime(rs.getString("时间"));
+					setNowscorenum(rs.getInt("评价人数"));
+					setNowtele(rs.getString("联系电话"));
+					setNowscore(String.valueOf(rs.getBigDecimal("平均得分")));	
+					setNowscorenum(rs.getInt("评价人数"));
+            }
+			else {
+				return ERROR;
+			}
+					/*sql= "update 所有体育馆  set 价格=?,位置=?,时间=?,设施种类=?,名称=? where 名称 ='"+(String)session.get("gym")+"'";
 					PreparedStatement pst = conn.prepareStatement(sql);
 		            pst.setString(1,getPrice());
 		            pst.setString(2,getAddress());
 		            pst.setString(3,getTime());
 		            pst.setString(4,getKind());
 		            pst.setString(5,getName());
-		            pst.executeUpdate();
-		            break;
-				}	
-				i++;
-			}
-			if(flag==0) {
+		            pst.executeUpdate();*/
+			/*if(flag==0) {
 				sql = "INSERT INTO 所有体育馆(编号,名称,价格,位置,时间,设施种类,标签,平均得分,联系电话,评价人数) VALUES(?,?,?,?,?,?,?,?,?,?)";
 				PreparedStatement pst = conn.prepareStatement(sql);
 	            pst.setInt(1,i);
@@ -127,7 +208,7 @@ public class gyminfoAction extends ActionSupport {
 	            pst.setString(9,getTele());
 	            pst.setInt(10,0);
 	            pst.executeUpdate();
-			}
+			}*/
 			try {
 	            if (rs!= null) {
 	              rs.close();

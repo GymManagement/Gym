@@ -30,6 +30,13 @@
 <a href="rankingGym">这里</a>
 <br>
 
+<form action="searchusergame.action">
+查询比赛信息：
+<s:select headerKey="-1" headerValue="请选择" name="index" list="gamelist"  listKey="index" listValue="name"/>
+<input type=submit value="确定"/>
+</form>
+
+
 <form action="backLogin.action">
 <input type=submit value="返回登录界面"/>
 </form>

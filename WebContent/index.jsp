@@ -14,12 +14,15 @@
         word-spacing: 150px;
     }
 </style>
-<input type="button" onclick="window.location='gyminformation.jsp'" value="基本信息">
-<input type="button" onclick="window.location='gymsheshi.jsp'" value="设施情况">
-<input type="button" onclick="window.location='gymbiggame.jsp'" value="重大比赛">
-<form action="checkfac.action">
+<s:form action="checkinf.action" theme="simple">
 <input type=submit value="当前状态"/>
-</form>
+</s:form>
+<s:form action="checkfac.action" theme="simple">
+<input type=submit value="设施情况"/>
+</s:form>
+<s:form action="checkgame.action" theme="simple">
+<input type=submit value="重大比赛"/>
+</s:form>
 <br><br><br>
 
 <center><input type="button" onclick="window.location='welcome.jsp'" value="返回登陆界面"></center>
