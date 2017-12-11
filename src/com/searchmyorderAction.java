@@ -18,7 +18,24 @@ public class searchmyorderAction extends ActionSupport {
 	private Connection conn = null;
     private Statement stmt = null;
     private ResultSet rs = null;
+    private String setuser;
+	private String getuser;
 	
+	public String getSetuser() {
+		return setuser;
+	}
+
+	public void setSetuser(String setuser) {
+		this.setuser = setuser;
+	}
+
+	public String getGetuser() {
+		return getuser;
+	}
+
+	public void setGetuser(String getuser) {
+		this.getuser = getuser;
+	}
 	public class order{
 		private String gym;
 		private String date;
@@ -85,9 +102,10 @@ public class searchmyorderAction extends ActionSupport {
 
 
 	public String execute() throws Exception{
-		ActionContext ac=ActionContext.getContext();
-		Map<String, Object> session=ac.getSession();
-		String un=(String)session.get("username");
+		//ActionContext ac=ActionContext.getContext();
+		//Map<String, Object> session=ac.getSession();
+		String un=this.getGetuser();
+		this.setSetuser(un);
 		Date date1=new Date();
 		String[] tempdate = new String[8];
 		Calendar calendar = new GregorianCalendar();

@@ -26,7 +26,24 @@ public class orderAction extends ActionSupport {
 	private Connection conn = null;
     private Statement stmt = null;
     private ResultSet rs = null;
-    
+    private String getuser;
+	private String setuser;
+	
+	public String getSetuser() {
+		return setuser;
+	}
+
+	public void setSetuser(String setuser) {
+		this.setuser = setuser;
+	}
+
+	public String getGetuser() {
+		return getuser;
+	}
+
+	public void setGetuser(String getuser) {
+		this.getuser = getuser;
+	}
 	public String getGymname() {
 		return gymname;
 	}
@@ -306,9 +323,10 @@ public class orderAction extends ActionSupport {
 						int flag=0;
 						for(int t=0;t<onetime.size();t++) {
 							if((onetime.get(t).getName()).equals(rs.getString("设施名称"))) {
-								onetime.get(t).setNum(onetime.get(t).getNum()+1);
-								System.out.print("d");
+							//	onetime.get(t).setNum(onetime.get(t).getNum()+1);
+								//System.out.print("d");
 								flag=1;
+								break;
 							}
 						}
 						if(flag==0) {
@@ -317,8 +335,8 @@ public class orderAction extends ActionSupport {
 							tfac.setDate(j);
 							tfac.setTimeregion(i);
 							tfac.setName(rs.getString("设施名称"));
-							tfac.setNum(1);
-							tfac.setIndex(rs.getInt("编号"));
+							//tfac.setNum(1);
+							tfac.setIndex(rs.getInt("编号"));						
 							onetime.add(tfac);
 						}
 					}
@@ -348,6 +366,7 @@ public class orderAction extends ActionSupport {
 		}
 	}
 	public String execute() throws Exception{
+		this.setSetuser(this.getGetuser());
 		faconetime[][] fac=new faconetime[3][7];
 		for(int i=0;i<3;i++) {
 			for(int j=0;j<7;j++) {

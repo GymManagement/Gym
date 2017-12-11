@@ -22,7 +22,14 @@ public class LoginuserAction extends ActionSupport {
     private UserDao userDao = new UserDaoImpl();
     private String xxx;
     private String xxxname;
+    private String getuser;
     
+	public String getGetuser() {
+		return getuser;
+	}
+	public void setGetuser(String getuser) {
+		this.getuser = getuser;
+	}
 	public String getXxxname() {
 		return xxxname;
 	}
@@ -142,10 +149,11 @@ public class LoginuserAction extends ActionSupport {
         else{  
             ActionContext.getContext().put("tip", getText("success"));  
             ActionContext.getContext().put("username", user.getPhonenum()); 
-            ActionContext ac=ActionContext.getContext();
-    		Map<String, Object> session=ac.getSession();
-    		session.put("username", user.getPhonenum());
-    		this.setXxx(user.getPhonenum());
+           // ActionContext ac=ActionContext.getContext();
+    		//Map<String, Object> session=ac.getSession();
+    		//session.put("username", user.getPhonenum());
+            String un=this.user.getPhonenum();
+    		this.setXxx(un);
     		try {
     			Class.forName("com.mysql.jdbc.Driver");     //¼ÓÔØMYSQL JDBCÇý¶¯³ÌÐò   
     			System.out.println("Success loading Mysql Driver!");

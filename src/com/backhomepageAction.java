@@ -24,8 +24,16 @@ public class backhomepageAction extends ActionSupport {
     private ResultSet rs = null;
     private String xxx;
     private String xxxname;
+    private String getuser;
     
-   	public String getXxxname() {
+    
+   	public String getGetuser() {
+		return getuser;
+	}
+	public void setGetuser(String getuser) {
+		this.getuser = getuser;
+	}
+	public String getXxxname() {
    		return xxxname;
    	}
    	public void setXxxname(String xxxname) {
@@ -110,9 +118,10 @@ public class backhomepageAction extends ActionSupport {
 			this.gamelist = gamelist;
 		}
 	public String execute() throws Exception{
-		ActionContext ac=ActionContext.getContext();
-		Map<String, Object> session=ac.getSession();
-		this.setXxx((String)session.get("username"));
+		//ActionContext ac=ActionContext.getContext();
+		//Map<String, Object> session=ac.getSession();
+		String un=this.getGetuser();
+		this.setXxx(un);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");     //加载MYSQL JDBC驱动程序   
 			System.out.println("Success loading Mysql Driver!");
@@ -135,7 +144,7 @@ public class backhomepageAction extends ActionSupport {
             }
 			this.setGymlist(tgymlist);
 			//获取用户名字
-			sql= "select * from 普通用户 where 电话='"+(String)session.get("username")+"'";
+			sql= "select * from 普通用户 where 电话='"+un+"'";
 			rs = stmt.executeQuery(sql);
 			if(rs.next()){
     			this.setXxxname(rs.getString("姓名"));

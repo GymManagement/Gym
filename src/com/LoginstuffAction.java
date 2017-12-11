@@ -20,8 +20,17 @@ public class LoginstuffAction extends ActionSupport {
     private Stuff stuff;
     private StuffDao stuffDao = new StuffDaolmpl();
     private String name;
+    private String getgym;
     
-    public String getName() {
+	public String getGetgym() {
+		return getgym;
+	}
+
+	public void setGetgym(String getgym) {
+		this.getgym = getgym;
+	}
+
+	public String getName() {
 		return name;
 	}
 
@@ -117,10 +126,12 @@ public class LoginstuffAction extends ActionSupport {
     }  
     
     public String login(){  
-    	ActionContext ac=ActionContext.getContext();
-		Map<String, Object> session=ac.getSession();
-		session.put("gym", stuff.getGym());
-		this.setName((String)session.get("gym"));
+    	//ActionContext ac=ActionContext.getContext();
+		//Map<String, Object> session=ac.getSession();
+		//session.put("gym", stuff.getGym());
+		//this.setName((String)session.get("gym"));
+		String gn=stuff.getGym();
+		this.setName(gn);
         Stuff psw = stuffDao.stuffLogin(stuff.getIdentity(),stuff.getPassword(),stuff.getGym());  
         if(psw==null){
         	try {

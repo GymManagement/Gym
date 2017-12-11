@@ -27,7 +27,15 @@ public class changefacAction extends ActionSupport {
     private String newname;
     private String newnum;
     private String newintroduce;
+    private String getgym;
     
+  	public String getGetgym() {
+  		return getgym;
+  	}
+
+  	public void setGetgym(String getgym) {
+  		this.getgym = getgym;
+  	}
     public String getNewname() {
 		return newname;
 	}
@@ -159,9 +167,9 @@ public class changefacAction extends ActionSupport {
 			tempdate.add(tw);
 		}					
 		this.setWeek(tempdate);
-		ActionContext ac=ActionContext.getContext();
-		Map<String, Object> session=ac.getSession();
-		String nn=(String)session.get("gym");
+	//	ActionContext ac=ActionContext.getContext();
+	//	Map<String, Object> session=ac.getSession();
+		String nn=this.getGetgym();
 		this.setFacnum(0);
 		this.setNameOfGym(nn);
 		try {

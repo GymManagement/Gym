@@ -91,7 +91,7 @@ your browser does not support the canvas element.
 
 
 举办方：<s:property value="nameOfGym"/>体育馆
-<br>
+<br><br>
 名称：<s:property value="name"/><br>
 <br>
 日期：<s:property value="data"/><br>
@@ -100,13 +100,22 @@ your browser does not support the canvas element.
 <br>
 介绍：<s:property value="introduce"/><br>
 <br>
+报名情况：<s:property value="ifjoin"/><br>
+<br>
 
 <form action="usersignup.action">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 <input name="indexget" type="hidden" value=<s:property value="index"/>>
 <input type="submit" value="我要报名">
 </form>
+<form action="usercancelsignup.action">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
+<input name="indexget" type="hidden" value=<s:property value="index"/>>
+<input type="submit" value="取消报名">
+</form>
 
 <form action="backHomepage.action">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 <input type="submit" value="返回">
 </form>
 </body>

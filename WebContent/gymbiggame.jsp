@@ -96,6 +96,7 @@ your browser does not support the canvas element.
 添加比赛：
 <br>
 <form action="biggame.action">
+<input name="getgym" type="hidden" value=<s:property value="nameOfGym"/>>
 名称：
 <input type="text" name="newname" />
 <br><br>
@@ -114,6 +115,7 @@ your browser does not support the canvas element.
 
 查询或修改比赛信息
 <form action="checkgamedetail.action">
+<input name="getgym" type="hidden" value=<s:property value="nameOfGym"/>>
 <s:select headerKey="-1" headerValue="请选择" name="index" list="gamelist"  listKey="index" listValue="name"/> 
 <input type=submit value="确定"/>
 </form>
@@ -124,6 +126,7 @@ your browser does not support the canvas element.
 <p>
 
 <form id="form1" name="form1" method="" action="backstuffhome.action" target="_blank"> 
+<input name="getgym" type="hidden" value=<s:property value="nameOfGym"/>>
 <div> 
 <input type="submit" align="bottom" class="btn" value="返回主页面" onmouseover="this.style.backgroundPosition='left -36px'"
  onmouseout="this.style.backgroundPosition='left top'" /> 

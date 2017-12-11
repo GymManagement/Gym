@@ -25,6 +25,25 @@ public class searchGymAction extends ActionSupport {
 	private String score;
 	private String tele;
 	private String name;
+	private String getuser;
+	private String setuser;
+	
+	public String getSetuser() {
+		return setuser;
+	}
+
+	public void setSetuser(String setuser) {
+		this.setuser = setuser;
+	}
+
+	public String getGetuser() {
+		return getuser;
+	}
+
+	public void setGetuser(String getuser) {
+		this.getuser = getuser;
+	}
+
 	public class game{
     	private String data;
         private String introduce;    
@@ -169,6 +188,7 @@ public class searchGymAction extends ActionSupport {
 	}
 
 	public String execute() throws Exception{
+		this.setSetuser(this.getGetuser());
 		try {
 			Class.forName("com.mysql.jdbc.Driver");     //¼ÓÔØMYSQL JDBCÇý¶¯³ÌÐò   
 			System.out.println("Success loading Mysql Driver!");

@@ -92,6 +92,7 @@ your browser does not support the canvas element.
 
 
 <form action="myplantest.action">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 身高(m):<input type="text" name="changedheight">
 体重(kg):<input type="text" name="changedweight">
 

@@ -14,7 +14,25 @@ public class myplanaimAction extends ActionSupport {
 	private String suggestfreq;
 	private String aimweight;
 	private String changedaimweight;
+	private String setuser;
+	private String getuser;
 	
+	public String getSetuser() {
+		return setuser;
+	}
+
+	public void setSetuser(String setuser) {
+		this.setuser = setuser;
+	}
+
+	public String getGetuser() {
+		return getuser;
+	}
+
+	public void setGetuser(String getuser) {
+		this.getuser = getuser;
+	}
+
 	private Connection conn = null;
     private Statement stmt = null;
     private ResultSet rs = null;
@@ -68,9 +86,10 @@ public class myplanaimAction extends ActionSupport {
 	}
 
 	public String execute() throws Exception{
-		ActionContext ac=ActionContext.getContext();
-		Map<String, Object> session=ac.getSession();
-		String un=(String)session.get("username");
+		//ActionContext ac=ActionContext.getContext();
+		//Map<String, Object> session=ac.getSession();
+		String un=this.getGetuser();
+		this.setSetuser(un);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");     //¼ÓÔØMYSQL JDBCÇý¶¯³ÌÐò   
 			System.out.println("Success loading Mysql Driver!");

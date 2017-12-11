@@ -17,7 +17,25 @@ public class myplanAction extends ActionSupport {
 	private String testresult;
 	private String suggestfreq;
 	private String aimweight;
+	private String setuser;
+	private String username;
 	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getSetuser() {
+		return setuser;
+	}
+
+	public void setSetuser(String setuser) {
+		this.setuser = setuser;
+	}
+
 	private Connection conn = null;
     private Statement stmt = null;
     private ResultSet rs = null;
@@ -63,9 +81,10 @@ public class myplanAction extends ActionSupport {
 	}
 
 	public String execute() throws Exception{
-		ActionContext ac=ActionContext.getContext();
-		Map<String, Object> session=ac.getSession();
-		String un=(String)session.get("username");
+	//	ActionContext ac=ActionContext.getContext();
+	//	Map<String, Object> session=ac.getSession();
+		String un=this.getUsername();
+		this.setSetuser(un);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");     //¼ÓÔØMYSQL JDBCÇý¶¯³ÌÐò   
 			System.out.println("Success loading Mysql Driver!");

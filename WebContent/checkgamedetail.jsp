@@ -94,6 +94,7 @@ your browser does not support the canvas element.
 修改信息
 <br>
 <form action="gymchangegame.action">
+<input name="getgym" type="hidden" value=<s:property value="nameOfGym"/>>
 <input name="index" type="hidden" value=<s:property value="index"/>>
 名称：<s:property value="name"/><br>
 <input type="text" name="newname" />
@@ -123,6 +124,7 @@ your browser does not support the canvas element.
 <p>
 
 <form id="form1" name="form1" method="" action="backcheckgame.action" target="_blank"> 
+<input name="getgym" type="hidden" value=<s:property value="nameOfGym"/>>
 <div> 
 <input type="submit" align="bottom" class="btn" value="返回重大比赛页面" onmouseover="this.style.backgroundPosition='left -36px'"
  onmouseout="this.style.backgroundPosition='left top'" /> 

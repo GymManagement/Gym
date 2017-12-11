@@ -32,6 +32,24 @@ public class scoreAction extends ActionSupport {
 	private String score;
 	private String tele;
 	private String name;
+	private String getuser;
+	private String setuser;
+	
+	public String getSetuser() {
+		return setuser;
+	}
+
+	public void setSetuser(String setuser) {
+		this.setuser = setuser;
+	}
+
+	public String getGetuser() {
+		return getuser;
+	}
+
+	public void setGetuser(String getuser) {
+		this.getuser = getuser;
+	}
 	public class game{
     	private String data;
         private String introduce;    
@@ -192,9 +210,11 @@ public void setName(String name) {
 		this.score = score;
 	}
 	public String execute() throws Exception{
-		ActionContext ac=ActionContext.getContext();
-		Map<String, Object> session=ac.getSession();
+		//ActionContext ac=ActionContext.getContext();
+		//Map<String, Object> session=ac.getSession();
 		//this.setXxx((String)session.get("username"));
+		String un=this.getGetuser();
+		this.setSetuser(un);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");     //加载MYSQL JDBC驱动程序   
 			System.out.println("Success loading Mysql Driver!");
@@ -213,7 +233,7 @@ public void setName(String name) {
 			}
 			ni++;
 			BigDecimal bd=new BigDecimal(getUserscore());
-			sql= "select * from 评价评分 where 用户电话='"+(String)session.get("username")+"' and 体育馆='"+getGym()+"'";				
+			sql= "select * from 评价评分 where 用户电话='"+un+"' and 体育馆='"+getGym()+"'";				
 			int flag=-1;	
 			double oldscore=0;
 			rs = stmt.executeQuery(sql);
@@ -221,7 +241,7 @@ public void setName(String name) {
 					sql = "INSERT INTO 评价评分(序号,用户电话,评价,评分,体育馆) VALUES(?,?,?,?,?)";
 					PreparedStatement pst = conn.prepareStatement(sql);
 					pst.setInt(1, ni);
-					pst.setString(2,(String)session.get("username"));
+					pst.setString(2,un);
 			        pst.setString(3,getUsercomment());
 			        pst.setBigDecimal(4,bd);
 			        pst.setString(5,getGym());
@@ -236,7 +256,7 @@ public void setName(String name) {
 					PreparedStatement pst = conn.prepareStatement(sql);
 			        pst.setString(1,getUsercomment());
 			        pst.setBigDecimal(2,bd);
-			        pst.setString(3,(String)session.get("username"));
+			        pst.setString(3,un);
 			        pst.setString(4,getGym());
 			        pst.executeUpdate();
 			        flag=0;

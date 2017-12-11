@@ -101,6 +101,7 @@ your browser does not support the canvas element.
 分数：<s:property value="score"/>(10分满分)
 <br>
 <form action="checkcomment.action">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 <input name="getname" type="hidden" value=<s:property value="name"/>>
 <input type=submit value="查看评论"/>
 <br>
@@ -120,6 +121,7 @@ your browser does not support the canvas element.
 
 <form action="order.action">
 预定服务：
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 <input name="gymname" type="hidden" value=<s:property value="name"/>>
 <input type=submit value="我要预订"/>
 <br>
@@ -128,6 +130,7 @@ your browser does not support the canvas element.
 
 
 <form action="score.action">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 <input name="gym" type="hidden" value=<s:property value="name"/>>
 评分:(10分满分)
 <s:select headerKey="-1" headerValue="请选择" name="userscore" list="#{'0':'0','1':'1','2':'2','3':'3','4':'4','5':'5','6':'6','7':'7','8':'8','9':'9','10':'10'}"/>
@@ -140,10 +143,13 @@ your browser does not support the canvas element.
 <br>
 </form>
 <br><br>
+
+
 <font face="楷体" size = "7" color="black">
 <form action="searchusergame.action">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 查看比赛信息
-</form>
+<br>
 <input name="gymgetname" type="hidden" value=<s:property value="name"/>>
 <s:select headerKey="-1" headerValue="请选择" name="index" list="gamelist"  listKey="index" listValue="name"/>
 <input type=submit value="确定"/>
@@ -151,6 +157,7 @@ your browser does not support the canvas element.
 
 
 <form action="backHomepage.action">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 <input type=submit value="返回首页"/>
 <br>
 </form>

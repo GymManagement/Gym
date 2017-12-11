@@ -89,18 +89,20 @@ your browser does not support the canvas element.
 <font face="楷体" size = "5" color="black">
 
 <s:form action="searchfac.action">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 搜索健身设施：
 <input type="text" name="facneed"/>
 <input type="submit" value="查询"/>
 </s:form>
 <s:iterator value="gymlist" var='i'>
-    <a href="searchGym?nameOfGym=<s:property value="index"/>"><s:property value="name"/></a>
+    <a href="searchGym?nameOfGym=<s:property value="index"/>&getuser=<s:property value="setuser"/>"><s:property value="name"/></a>
     <s:property value="num"/>人评价
     <s:property value="score"/>分
   <br>
 </s:iterator>
 
 <s:form action="backHomepage.action">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 <input type="submit" value="返回"/>
 </s:form>
 <br>

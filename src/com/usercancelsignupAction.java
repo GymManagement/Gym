@@ -18,7 +18,7 @@ import com.opensymphony.xwork2.ActionSupport;
 //import java.sql.Statement;
 
 
-public class usersignupAction extends ActionSupport {
+public class usercancelsignupAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 	public Connection connect;
@@ -124,43 +124,12 @@ public class usersignupAction extends ActionSupport {
 			String url="jdbc:mysql://localhost:3306/体育馆基本信息?characterEncoding=utf8&useSSL=false";
 			
 			
+			
 			conn = DriverManager.getConnection(url,"root","123456");
 			stmt = conn.createStatement(); //创建Statement对象	
-			//报名
-			String sql = "select * from 比赛信息 where 编号='"+Integer.parseInt(getIndexget())+"'";
-			rs=stmt.executeQuery(sql);
-			String sname=null,sgym=null;
-			if(rs.next()) {
-				setIndex(getIndexget());
-				sname=rs.getString("名称");
-				sgym=rs.getString("体育馆");
-			}
-			sql = "select * from 报名信息";
-			rs=stmt.executeQuery(sql);
-			int sum=0;
-			int flag=0;
-			while(rs.next()) {
-				sum=rs.getInt("编号");
-				if(rs.getString("用户").equals(un) && rs.getInt("比赛序号")==Integer.parseInt(getIndexget())) {
-					flag=1;
-
-				}
-			}
-			if(flag==0) {
-				sum++;
-				PreparedStatement pstmt = null;  
-	            sql = "INSERT INTO 报名信息(编号,比赛名称,体育馆,比赛序号,用户) VALUES(?,?,?,?,?)";    
-	            pstmt = conn.prepareStatement(sql);  
-	            pstmt.setInt(1, sum);
-	            pstmt.setString(2,sname);
-	            pstmt.setString(3,sgym);
-	            pstmt.setInt(4,Integer.parseInt(getIndexget()));  
-	            pstmt.setString(5,un);
-	            pstmt.executeUpdate(); 
-				conn = DriverManager.getConnection(url,"root","123456");
-				stmt = conn.createStatement(); //创建Statement对象	
-			}
-			
+			//取消报名
+			String sql = "delete from 报名信息 where 用户='"+un+"' and 比赛序号='"+Integer.parseInt(getIndexget())+"'";
+			stmt.executeUpdate(sql);
 			//显示比赛信息
 			conn = DriverManager.getConnection(url,"root","123456");	
 			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -174,7 +143,7 @@ public class usersignupAction extends ActionSupport {
 				setName(rs.getString("名称"));
 				setNameOfGym(rs.getString("体育馆"));
 			}
-			sql = "select * from 报名信息 where 比赛序号='"+getIndex()+"' and 用户='"+un+"'";
+			sql = "select * from 报名信息 where 比赛序号='"+Integer.parseInt(getIndexget())+"' and 用户='"+un+"'";
 			rs=stmt.executeQuery(sql);
 			if(rs.next()) {
 				setIfjoin("您已报名");
@@ -194,6 +163,7 @@ public class usersignupAction extends ActionSupport {
 	            if (conn != null) {
 	              conn.close();
 	            }
+	           return INPUT;
 	          } catch (Exception e) {
 	        	  System.out.print("get data error1!");
 	          }

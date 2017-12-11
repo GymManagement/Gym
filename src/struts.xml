@@ -245,6 +245,11 @@
             <result name="input">searchusergame.jsp</result>
         </action>
         
+        <action name="usercancelsignup" class="com.usercancelsignupAction">
+            <result name="success">/searchusergame.jsp</result>
+            <result name="error">notfound.jsp</result>
+            <result name="input">searchusergame.jsp</result>
+        </action>
         
         <action name="searchmyorder" class="com.searchmyorderAction">
             <result name="success">/searchmyorder.jsp</result>

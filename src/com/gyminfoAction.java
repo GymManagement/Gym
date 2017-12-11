@@ -26,8 +26,14 @@ public class gyminfoAction extends ActionSupport {
 	private int nowscorenum;
 	private String nowtele;
 	private String nowname;
+	private String getgym;
 	
-	
+	public String getGetgym() {
+		return getgym;
+	}
+	public void setGetgym(String getgym) {
+		this.getgym = getgym;
+	}
 	public String getNowposition() {
 		return nowposition;
 	}
@@ -120,9 +126,9 @@ public class gyminfoAction extends ActionSupport {
 			return ERROR;
 		}
 		try {
-			ActionContext ac=ActionContext.getContext();
-			Map<String, Object> session=ac.getSession();
-			String nn=(String)session.get("gym");
+			//ActionContext ac=ActionContext.getContext();
+			//Map<String, Object> session=ac.getSession();
+			String nn=this.getGetgym();
 			String url="jdbc:mysql://localhost:3306/体育馆基本信息?characterEncoding=utf8&useSSL=false";
 			conn = DriverManager.getConnection(url,"root","123456");
 			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE); //创建Statement对象	
@@ -170,8 +176,8 @@ public class gyminfoAction extends ActionSupport {
 			}
 			conn = DriverManager.getConnection(url,"root","123456");
 			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);//创建Statement对象	
-			sql= "select * from 所有体育馆 where 名称='"+(String)session.get("gym")+"'";
-			this.setNowname((String)session.get("gym"));
+			sql= "select * from 所有体育馆 where 名称='"+nn+"'";
+			this.setNowname(nn);
 			rs = stmt.executeQuery(sql);
 			if(rs.next()){
 					setNowposition(rs.getString("位置"));

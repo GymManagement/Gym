@@ -23,20 +23,32 @@ public class changeInfoAction extends ActionSupport {
 	private String newname;
 	private String newemail;
 	private String username;
-	private String xxx;
+	private String setuser;
+	private String getuser;
 	
+	
+	public String getGetuser() {
+		return getuser;
+	}
+
+	public void setGetuser(String getuser) {
+		this.getuser = getuser;
+	}
+
+
+
+	public String getSetuser() {
+		return setuser;
+	}
+
+	public void setSetuser(String setuser) {
+		this.setuser = setuser;
+	}
+
 	private Connection conn = null;
     private Statement stmt = null;
     private ResultSet rs = null;
 	
-	public String getXxx() {
-		return xxx;
-	}
-
-	public void setXxx(String xxx) {
-		this.xxx = xxx;
-	}
-
 	public String getUsername() {
 		return username;
 	}
@@ -78,9 +90,10 @@ public class changeInfoAction extends ActionSupport {
 	}
 
 	public String execute() throws Exception{
-		ActionContext ac=ActionContext.getContext();
-		Map<String, Object> session=ac.getSession();
-		this.setXxx((String)session.get("username"));
+		//ActionContext ac=ActionContext.getContext();
+		//Map<String, Object> session=ac.getSession();
+		String un=this.getGetuser();
+		this.setSetuser(un);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");     //加载MYSQL JDBC驱动程序   
 			System.out.println("Success loading Mysql Driver!");
@@ -95,13 +108,13 @@ public class changeInfoAction extends ActionSupport {
 			PreparedStatement pst ;
 			rs = stmt.executeQuery(sql);
 			while (rs.next()){
-				if((rs.getString("密码")).equals(getPassword()) && (rs.getString("电话")).equals((String)session.get("username"))) {
+				if((rs.getString("密码")).equals(getPassword()) && (rs.getString("电话")).equals(un)) {
 					System.out.println("密码输对了");
 					if(!getNewname().equals("")) {
 						sql= "update 普通用户  set 姓名 = ? where 电话 = ?";
 						pst = conn.prepareStatement(sql);
 			            pst.setString(1,getNewname());
-			            pst.setString(2,getXxx());
+			            pst.setString(2,un);
 			            pst.executeUpdate();
 			            System.out.println("改了名字");
 					}
@@ -109,7 +122,7 @@ public class changeInfoAction extends ActionSupport {
 						sql= "update 普通用户  set 密码=? where 电话=?";
 						pst = conn.prepareStatement(sql);
 			            pst.setString(1,getNewpassword());
-			            pst.setString(2,getXxx());
+			            pst.setString(2,un);
 			            pst.executeUpdate();
 			            System.out.println("改了密码");
 					}
@@ -117,7 +130,7 @@ public class changeInfoAction extends ActionSupport {
 						sql= "update 普通用户  set 邮箱=? where 电话=?";
 						pst = conn.prepareStatement(sql);
 			            pst.setString(1,getNewemail());
-			            pst.setString(2,getXxx());
+			            pst.setString(2,un);
 			            pst.executeUpdate();
 			            System.out.println("改了邮箱");
 					}

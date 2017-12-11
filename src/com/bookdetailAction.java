@@ -19,7 +19,24 @@ public class bookdetailAction extends ActionSupport {
     private String[] showtimebegin=new String[5]; 
     private String[] showtimeend=new String[5]; 
 	private String[][] showfac=new String[5][7];
+	private String setuser;
+	private String getuser;
 	
+	public String getSetuser() {
+		return setuser;
+	}
+
+	public void setSetuser(String setuser) {
+		this.setuser = setuser;
+	}
+
+	public String getGetuser() {
+		return getuser;
+	}
+
+	public void setGetuser(String getuser) {
+		this.getuser = getuser;
+	}
 	public String[] getShowtimebegin() {
 		return showtimebegin;
 	}
@@ -73,9 +90,10 @@ public class bookdetailAction extends ActionSupport {
 				tempdate[i]=formatter.format(date1);
 			}						
 			this.setDate(tempdate);
-			ActionContext ac=ActionContext.getContext();
-			Map<String, Object> session=ac.getSession();
-			String un=(String)session.get("username");
+			//ActionContext ac=ActionContext.getContext();
+			//Map<String, Object> session=ac.getSession();
+			String un=this.getGetuser();
+			this.setSetuser(un);
 			try {
 				Class.forName("com.mysql.jdbc.Driver");     //¼ÓÔØMYSQL JDBCÇý¶¯³ÌÐò   
 				System.out.println("Success loading Mysql Driver!");

@@ -87,8 +87,9 @@ your browser does not support the canvas element.
 <div id="htl">
 <div style="width:500%;min-height:300px;height:auto;background-color:rgba(255,245,238,0.5);position:relative;top:60px;left:50px">
 <font face="楷体" size = "4" color="black">
-<form action="backchangeinfo.action">
 
+<form action="backchangeinfo.action">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 <font face="楷体" size = "7" color="black">
 更改用户信息
 </font>
@@ -107,6 +108,7 @@ your browser does not support the canvas element.
 </form>
 
 <form action="backHomepage.action">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 <input type=submit value="返回首页"/>
 <br>
 </form>

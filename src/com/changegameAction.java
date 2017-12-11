@@ -26,8 +26,17 @@ public class changegameAction extends ActionSupport {
     private Statement stmt = null;
     private ResultSet rs = null;
     private String nameOfGym;
+    private String getgym;
     
-    public String getNameOfGym() {
+    public String getGetgym() {
+		return getgym;
+	}
+
+	public void setGetgym(String getgym) {
+		this.getgym = getgym;
+	}
+
+	public String getNameOfGym() {
 		return nameOfGym;
 	}
 
@@ -120,9 +129,9 @@ public class changegameAction extends ActionSupport {
 		this.name = name;
 	}
 	public String execute() throws Exception{
-		ActionContext ac=ActionContext.getContext();
-		Map<String, Object> session=ac.getSession();
-		String nn=(String)session.get("gym");
+		//ActionContext ac=ActionContext.getContext();
+		//Map<String, Object> session=ac.getSession();
+		String nn=this.getGetgym();
 		this.setNameOfGym(nn);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");     //¼ÓÔØMYSQL JDBCÇý¶¯³ÌÐò   

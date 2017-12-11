@@ -28,8 +28,17 @@ public class checkgamedetailAction extends ActionSupport {
     private String nameOfGym;
     private int index;
     private List<String> signup=new ArrayList<String>();
+    private String getgym;
     
-    public List<String> getSignup() {
+    public String getGetgym() {
+		return getgym;
+	}
+
+	public void setGetgym(String getgym) {
+		this.getgym = getgym;
+	}
+
+	public List<String> getSignup() {
 		return signup;
 	}
 
@@ -84,9 +93,9 @@ public class checkgamedetailAction extends ActionSupport {
 
 	
 	public String execute() throws Exception{
-		ActionContext ac=ActionContext.getContext();
-		Map<String, Object> session=ac.getSession();
-		String nn=(String)session.get("gym");
+		//ActionContext ac=ActionContext.getContext();
+		//Map<String, Object> session=ac.getSession();
+		String nn=this.getGetgym();
 		this.setNameOfGym(nn);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");     //¼ÓÔØMYSQL JDBCÇý¶¯³ÌÐò   

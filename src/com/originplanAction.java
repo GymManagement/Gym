@@ -25,7 +25,24 @@ public class originplanAction extends ActionSupport {
 	private Connection conn = null;
     private Statement stmt = null;
     private ResultSet rs = null;
-    
+    private String setuser;
+	private String getuser;
+	
+	public String getSetuser() {
+		return setuser;
+	}
+
+	public void setSetuser(String setuser) {
+		this.setuser = setuser;
+	}
+
+	public String getGetuser() {
+		return getuser;
+	}
+
+	public void setGetuser(String getuser) {
+		this.getuser = getuser;
+	}
     public class facility{
     	public String name;
     	public String timebegin;
@@ -104,9 +121,10 @@ public class originplanAction extends ActionSupport {
 	public String execute() throws Exception{
 		//fac[0][0].init();
 		//System.out.println("长："+fac[0][0].onetime.size());
-		ActionContext ac=ActionContext.getContext();
-		Map<String, Object> session=ac.getSession();
-		String un=(String)session.get("username");
+		//ActionContext ac=ActionContext.getContext();
+		//Map<String, Object> session=ac.getSession();
+		String un=this.getGetuser();
+		this.setSetuser(un);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");     //加载MYSQL JDBC驱动程序   
 			System.out.println("Success loading Mysql Driver!");
@@ -200,6 +218,7 @@ public class originplanAction extends ActionSupport {
 					}
 				}
 			}
+			//显示信息
 			conn = DriverManager.getConnection(url,"root","123456");	
 			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);	
 			String[][] tfac=new String[5][7];

@@ -88,7 +88,7 @@ your browser does not support the canvas element.
 <div style="width:100%;min-height:300px;height:auto;background-color:rgba(255,245,238,0.5);position:relative;top:60px;left:50px">
 <font face="楷体" size = "5" color="black">
 先点
-<a href="test">这里</a>
+<a href="test?getuser=<s:property value="setuser"/>">这里</a>
 做个小测试吧
 <br>
 你的测试结果是：
@@ -107,21 +107,25 @@ your browser does not support the canvas element.
 <br>
 
 <form action="myplanaim.action">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 更改目标体重：<input type="text" name="changedaimweight">
 <br>
 <input type=submit value="提交"/>
 </form>
+
 <br>
 <form action="downgym.action">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 <input type="submit" value="制定我的健身计划">
 </form>
 <br>
 
 如果需要推荐，点击
-<a href="rankingGym">这里</a>
+<a href="rankingGym?getuser=<s:property value="setuser"/>">这里</a>
 <br>
 
 <form action="backHomepage.action">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 <input type=submit value="返回首页"/>
 <br>
 </form>

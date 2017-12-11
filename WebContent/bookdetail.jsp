@@ -162,20 +162,22 @@ your browser does not support the canvas element.
    <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td><a href="deleteplan?day=0">删除</a></td>
-    <td><a href="deleteplan?day=1">删除</a></td>
-    <td><a href="deleteplan?day=2">删除</a></td>
-    <td><a href="deleteplan?day=3">删除</a></td>
-    <td><a href="deleteplan?day=4">删除</a></td>
-    <td><a href="deleteplan?day=5">删除</a></td>
-    <td><a href="deleteplan?day=6">删除</a></td>
+    <td><a href="deleteplan?day=0&getuser=<s:property value="setuser"/>">删除</a></td>
+    <td><a href="deleteplan?day=1&getuser=<s:property value="setuser"/>">删除</a></td>
+    <td><a href="deleteplan?day=2&getuser=<s:property value="setuser"/>">删除</a></td>
+    <td><a href="deleteplan?day=3&getuser=<s:property value="setuser"/>">删除</a></td>
+    <td><a href="deleteplan?day=4&getuser=<s:property value="setuser"/>">删除</a></td>
+    <td><a href="deleteplan?day=5&getuser=<s:property value="setuser"/>">删除</a></td>
+    <td><a href="deleteplan?day=6&getuser=<s:property value="setuser"/>">删除</a></td>
     
    </tr>
 </table>
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 <input type=submit value="保存"/>
 </s:form>
 <br>
 <s:form action="backmyplan.action" theme="simple">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 <input type=submit value="返回"/>
 </s:form>
 

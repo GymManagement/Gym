@@ -16,7 +16,24 @@ public class checkcommentAction extends ActionSupport {
 	private Connection conn = null;
     private Statement stmt = null;
     private ResultSet rs = null;
-    
+    private String getuser;
+	private String setuser;
+	
+	public String getSetuser() {
+		return setuser;
+	}
+
+	public void setSetuser(String setuser) {
+		this.setuser = setuser;
+	}
+
+	public String getGetuser() {
+		return getuser;
+	}
+
+	public void setGetuser(String getuser) {
+		this.getuser = getuser;
+	}
 	public String getName() {
 		return name;
 	}
@@ -67,6 +84,7 @@ public class checkcommentAction extends ActionSupport {
 	}
 
 	public String execute() throws Exception{
+		this.setSetuser(this.getGetuser());
 		setName(getGetname());
 			ActionContext ac=ActionContext.getContext();
 			Map<String, Object> session=ac.getSession();

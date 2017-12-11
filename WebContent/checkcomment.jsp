@@ -97,6 +97,7 @@ your browser does not support the canvas element.
 <br><br>
 </s:iterator>
 <s:form action="backgymdetail.action">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
     <input name="gym" type="hidden" value=<s:property value="name"/>>
     <input type=submit value="返回"/>
     </s:form>

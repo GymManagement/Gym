@@ -116,6 +116,7 @@ your browser does not support the canvas element.
 <br>
 <br>
 <form id="form1" name="form1" method="" action="checkinf.action" target="_blank"> 
+<input name="getgym" type="hidden" value=<s:property value="name"/>>
 <div> 
 <input type="submit" align="middle" size = "2000" class="btn" value="当前信息" onmouseover="this.style.backgroundPosition='left -36px'"
  onmouseout="this.style.backgroundPosition='left top'" /> 
@@ -129,6 +130,7 @@ your browser does not support the canvas element.
 <br>
 
 <form id="form1" name="form1" method="" action="checkfac.action" target="_blank"> 
+<input name="getgym" type="hidden" value=<s:property value="name"/>>
 <div> 
 <input type="submit" align="middle" class="btn" value="设施情况" onmouseover="this.style.backgroundPosition='left -36px'"
  onmouseout="this.style.backgroundPosition='left top'" /> 
@@ -141,6 +143,7 @@ your browser does not support the canvas element.
 <br>
 
 <form id="form1" name="form1" method="" action="checkgame.action" target="_blank"> 
+<input name="getgym" type="hidden" value=<s:property value="name"/>>
 <div> 
 <input type="submit" align="right" class="btn" value="重大比赛" onmouseover="this.style.backgroundPosition='left -36px'"
  onmouseout="this.style.backgroundPosition='left top'" /> 

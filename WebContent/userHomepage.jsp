@@ -76,33 +76,40 @@ your browser does not support the canvas element.
 <ol style="list-style-type:decimal">
 <font face="楷体" size = "5" color="black">
 你好，
-<a href="changeInfo?xxx=<s:property value="xxx"/>"><s:property value="xxxname"/></a>
+<a href="changeInfo?getuser=<s:property value="xxx"/>"><s:property value="xxxname"/></a>
 <br>
 
 
 <form action="searchGym.action">
+<input name="getuser" type="hidden" value=<s:property value="xxx"/>>
 你想查看什么体育馆呢
 <s:select headerKey="-1" headerValue="请选择" name="nameOfGym" list="gymlist"  listKey="index" listValue="name"/> 
-
 <input type=submit value="确定"/>
 </form>
 <br>
 <br>
+
 <a href="myplan?username=<s:property value="xxx"/>">我的健身计划</a>
 <br>
 <br>
+
+
 如果需要推荐，点击
-<a href="rankingGym">这里</a>
+<a href="rankingGym?getuser=<s:property value="xxx"/>">这里</a>
 <br>
 <br>
+
+
 <form action="searchusergame.action">
+<input name="getuser" type="hidden" value=<s:property value="xxx"/>>
 查询比赛信息：
 <s:select headerKey="-1" headerValue="请选择" name="index" list="gamelist"  listKey="index" listValue="name"/>
 <input type=submit value="确定"/>
-<br>
+<br><br>
 </form>
 
-<a href="searchmyorder">查询预定信息</a>
+<a href="searchmyorder?getuser=<s:property value="xxx"/>">查询预定信息</a>
+
 
 <form action="backLogin.action">
 <input type=submit value="返回登录界面"/>

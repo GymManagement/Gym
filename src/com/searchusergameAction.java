@@ -27,6 +27,24 @@ public class searchusergameAction extends ActionSupport {
     private ResultSet rs = null;
     private String nameOfGym;
     private int index;
+    private String getuser;
+	private String setuser;
+	
+	public String getSetuser() {
+		return setuser;
+	}
+
+	public void setSetuser(String setuser) {
+		this.setuser = setuser;
+	}
+
+	public String getGetuser() {
+		return getuser;
+	}
+
+	public void setGetuser(String getuser) {
+		this.getuser = getuser;
+	}
 	public int getIndex() {
 		return index;
 	}
@@ -46,6 +64,16 @@ public class searchusergameAction extends ActionSupport {
     private String introduce;    
     private String location;
     private String name;
+    private String ifjoin;
+    
+
+	public String getIfjoin() {
+		return ifjoin;
+	}
+
+	public void setIfjoin(String ifjoin) {
+		this.ifjoin = ifjoin;
+	}
 
 	public String getData() {
 		return data;
@@ -74,9 +102,10 @@ public class searchusergameAction extends ActionSupport {
 
 	
 	public String execute() throws Exception{
-		ActionContext ac=ActionContext.getContext();
-		Map<String, Object> session=ac.getSession();
-		
+		//ActionContext ac=ActionContext.getContext();
+		//Map<String, Object> session=ac.getSession();
+		String un=this.getGetuser();
+		this.setSetuser(un);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");     //加载MYSQL JDBC驱动程序   
 			System.out.println("Success loading Mysql Driver!");
@@ -97,6 +126,14 @@ public class searchusergameAction extends ActionSupport {
 				setLocation(rs.getString("地点"));
 				setName(rs.getString("名称"));
 				setNameOfGym(rs.getString("体育馆"));
+			}
+			sql = "select * from 报名信息 where 比赛序号='"+getIndex()+"' and 用户='"+un+"'";
+			rs=stmt.executeQuery(sql);
+			if(rs.next()) {
+				setIfjoin("您已报名");
+			}
+			else {
+				setIfjoin("您未报名");
 			}
 			try {
 	            if (rs!= null) {

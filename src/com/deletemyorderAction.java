@@ -19,7 +19,25 @@ public class deletemyorderAction extends ActionSupport {
     private Statement stmt = null;
     private ResultSet rs = null;
     private String getindex;
+    private String setuser;
+	private String getuser;
 	
+	public String getSetuser() {
+		return setuser;
+	}
+
+	public void setSetuser(String setuser) {
+		this.setuser = setuser;
+	}
+
+	public String getGetuser() {
+		return getuser;
+	}
+
+	public void setGetuser(String getuser) {
+		this.getuser = getuser;
+	}
+
 	public String getGetindex() {
 		return getindex;
 	}
@@ -92,9 +110,10 @@ public class deletemyorderAction extends ActionSupport {
 
 
 	public String execute() throws Exception{
-		ActionContext ac=ActionContext.getContext();
-		Map<String, Object> session=ac.getSession();
-		String un=(String)session.get("username");
+		//ActionContext ac=ActionContext.getContext();
+		//Map<String, Object> session=ac.getSession();
+		this.setSetuser(this.getGetuser());
+		String un=this.getGetindex();
 		Date date1=new Date();
 		String[] tempdate = new String[8];
 		Calendar calendar = new GregorianCalendar();
@@ -116,13 +135,18 @@ public class deletemyorderAction extends ActionSupport {
 			String url="jdbc:mysql://localhost:3306/体育馆基本信息?characterEncoding=utf8&useSSL=false";
 			conn = DriverManager.getConnection(url,"root","123456");
 			//删除信息
+			PreparedStatement pst ;
 			conn = DriverManager.getConnection(url,"root","123456");
 			stmt = conn.createStatement(); 
-			String sql= "delete from 设施详细信息 where 编号='"+Integer.parseInt(getGetindex())+"'";
-			stmt.execute(sql);
+			
+			String sql= "update 设施详细信息  set 用户 = ? where 编号=?";
+			pst = conn.prepareStatement(sql);
+            pst.setString(1,"可用");
+            pst.setInt(2,Integer.parseInt(getGetindex()));
+            pst.executeUpdate();
 			//显示信息
 			stmt = conn.createStatement(); //创建Statement对象	
-			sql= "select * from 设施详细信息 where 用户='"+un+"'";
+			sql= "select * from 设施详细信息 where 用户='"+getGetuser()+"'";
 			rs = stmt.executeQuery(sql);
 			List<order> torderlist=new ArrayList<order>();
 			while (rs.next()){

@@ -89,6 +89,7 @@ your browser does not support the canvas element.
 <font face="楷体" size = "5" color="black">
 
 
+
 您当前的预定为：
 <table>
 <tr>
@@ -104,12 +105,16 @@ your browser does not support the canvas element.
 <td> <s:property value="timeregion"/></td>
 <td><s:property value="gym"/></td>
 <td><s:property value="facname"/></td>
-<td><a href="deletemyorder?getindex=<s:property value="index"/>">删除</a></td>
+<td><a href="deletemyorder?getuser=<s:property value="setuser"/>&getindex=<s:property value="index"/>">删除</a></td>
+
 </tr>
 </s:iterator>
 </table>
 
+
+
 <form action="backHomepage.action">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 <input type=submit value="返回首页"/>
 <br>
 </form>

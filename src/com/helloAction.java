@@ -14,17 +14,27 @@ import com.opensymphony.xwork2.inject.Context;
 public class helloAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
-	private String xxx;
-	public String getXxx() {
-		return xxx;
+	private String setuser;
+	private String getuser;
+	
+	public String getSetuser() {
+		return setuser;
 	}
-	public void setXxx(String xxx) {
-		this.xxx = xxx;
+
+	public void setSetuser(String setuser) {
+		this.setuser = setuser;
 	}
+
+	public String getGetuser() {
+		return getuser;
+	}
+
+	public void setGetuser(String getuser) {
+		this.getuser = getuser;
+	}
+
 	public String execute() throws Exception{
-		ActionContext ac=ActionContext.getContext();
-		Map<String, Object> session=ac.getSession();
-		this.setXxx((String)session.get("username"));
+		this.setSetuser(this.getGetuser());
 	    return SUCCESS;
 	}
      

@@ -94,6 +94,7 @@ your browser does not support the canvas element.
 
 <font face="楷体" size = "5" color="black">
 <form action="facinum.action">
+<input name="getgym" type="hidden" value=<s:property value="nameOfGym"/>>
 添加或修改设施：(修改数量必须大于用户预订数量)
 <br>
 设施名称:<input type=text name="newname"/>
@@ -112,21 +113,25 @@ your browser does not support the canvas element.
 查询设施
 <br>
 <form action="findfac.action">
+<input name="getgym" type="hidden" value=<s:property value="nameOfGym"/>>
 设施名称:<s:select headerKey="-1" headerValue="请选择" name="findname" list="facnow"  listKey="index" listValue="facname"/> 
 <input name="way" type="hidden" value="1"/>
 <input type=submit value="查询"/>
 </form>
 <form action="findfac.action">
+<input name="getgym" type="hidden" value=<s:property value="nameOfGym"/>>
 日期：<s:select headerKey="-1" headerValue="请选择" name="finddate" list="week"  listKey="index" listValue="data"/> 
 <input name="way" type="hidden" value="2"/>
 <input type=submit value="查询"/>
 </form>
 <form action="findfac.action">
+<input name="getgym" type="hidden" value=<s:property value="nameOfGym"/>>
 时间段：<s:select headerKey="-1" headerValue="请选择" name="findtime" list="#{'1':'1','2':'2','3':'3'}"/> 
 <input name="way" type="hidden" value="3"/>
 <input type=submit value="查询"/>
 </form>
 <form action="findfac.action">
+<input name="getgym" type="hidden" value=<s:property value="nameOfGym"/>>
 用户名：<input type=text name="finduser"/>
 <input name="way" type="hidden" value="4"/>
 <input type=submit value="查询"/>
@@ -178,6 +183,7 @@ your browser does not support the canvas element.
 <p>
 
 <form id="form1" name="form1" method="" action="backstuffhome.action" target="_blank"> 
+<input name="getgym" type="hidden" value=<s:property value="nameOfGym"/>>
 <div> 
 <input type="submit" align="bottom" class="btn" value="返回主页面" onmouseover="this.style.backgroundPosition='left -36px'"
  onmouseout="this.style.backgroundPosition='left top'" /> 

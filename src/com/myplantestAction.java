@@ -15,6 +15,24 @@ public class myplantestAction extends ActionSupport {
 	private String aimweight;
 	private String changedweight;
 	private String changedheight;
+	private String setuser;
+	private String getuser;
+	
+	public String getSetuser() {
+		return setuser;
+	}
+
+	public void setSetuser(String setuser) {
+		this.setuser = setuser;
+	}
+
+	public String getGetuser() {
+		return getuser;
+	}
+
+	public void setGetuser(String getuser) {
+		this.getuser = getuser;
+	}
 	
 	private Connection conn = null;
     private Statement stmt = null;
@@ -81,10 +99,11 @@ public class myplantestAction extends ActionSupport {
 	}
 
 	public String execute() throws Exception{
-		ActionContext ac=ActionContext.getContext();
-		Map<String, Object> session=ac.getSession();
+	//	ActionContext ac=ActionContext.getContext();
+	//	Map<String, Object> session=ac.getSession();
 		 
-		String un=(String)session.get("username");
+		String un=this.getGetuser();
+		this.setSetuser(un);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");     //¼ÓÔØMYSQL JDBCÇý¶¯³ÌÐò   
 			System.out.println("Success loading Mysql Driver!");

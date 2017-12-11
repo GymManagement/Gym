@@ -95,7 +95,7 @@ your browser does not support the canvas element.
 <font face="楷体" size = "5" color="black">
 
 <form action="gyminfo.action">
-
+<input name="getgym" type="hidden" value=<s:property value="nowname"/>>
 详细地址：<s:property value="nowposition"/>
 <input type="text" name="newposition" />
 <br><br>
@@ -130,6 +130,7 @@ your browser does not support the canvas element.
 <br>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <form id="form1" name="form1" method="" action="backstuffhome.action" target="_blank"> 
+<input name="getgym" type="hidden" value=<s:property value="nowname"/>>
 <div> 
 <input type="submit" align="bottom" class="btn" value="返回主页面" onmouseover="this.style.backgroundPosition='left -36px'"
  onmouseout="this.style.backgroundPosition='left top'" /> 

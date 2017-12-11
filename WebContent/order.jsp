@@ -88,6 +88,7 @@ your browser does not support the canvas element.
 <div style="width:400%;min-height:300px;height:auto;background-color:rgba(255,245,238,0.5);position:relative;top:60px;left:50px">
 <font face="楷体" size = "5" color="black">
 <s:form action="orderbygym.action">
+<input name="getuser" type="hidden" value=<s:property value="setuser"/>>
 <input name="gym" type="hidden" value=<s:property value="gymname"/>>
 <s:property value="gymname"/>
 体育馆
@@ -109,39 +110,39 @@ your browser does not support the canvas element.
   <tr>
     <td>8:00~11:00</td>
    
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose11" list="f11"  listKey="index" listValue="name"/></td> 
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose12" list="f12"  listKey="index" listValue="name"/></td>
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose13" list="f13"  listKey="index" listValue="name"/></td>
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose14" list="f14"  listKey="index" listValue="name"/></td> 
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose15" list="f15"  listKey="index" listValue="name"/></td>
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose16" list="f16"  listKey="index" listValue="name"/></td>
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose17" list="f17"  listKey="index" listValue="name"/></td>
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[0][0]" list="f11"  listKey="index" listValue="name"/></td> 
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[0][1]" list="f12"  listKey="index" listValue="name"/></td>
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[0][2]" list="f13"  listKey="index" listValue="name"/></td>
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[0][3]" list="f14"  listKey="index" listValue="name"/></td> 
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[0][4]" list="f15"  listKey="index" listValue="name"/></td>
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[0][5]" list="f16"  listKey="index" listValue="name"/></td>
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[0][6]" list="f17"  listKey="index" listValue="name"/></td>
 
    </tr>
     
    <tr>
     <td>12:00~15:00</td>
    
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose21" list="f21"  listKey="index" listValue="name"/></td> 
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose22" list="f22"  listKey="index" listValue="name"/></td>
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose23" list="f23"  listKey="index" listValue="name"/></td>
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose24" list="f24"  listKey="index" listValue="name"/></td> 
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose25" list="f25"  listKey="index" listValue="name"/></td>
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose26" list="f26"  listKey="index" listValue="name"/></td>
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose27" list="f27"  listKey="index" listValue="name"/></td>
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[1][0]" list="f21"  listKey="index" listValue="name"/></td> 
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[1][1]" list="f22"  listKey="index" listValue="name"/></td>
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[1][2]" list="f23"  listKey="index" listValue="name"/></td>
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[1][3]" list="f24"  listKey="index" listValue="name"/></td> 
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[1][4]" list="f25"  listKey="index" listValue="name"/></td>
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[1][5]" list="f26"  listKey="index" listValue="name"/></td>
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[1][6]" list="f27"  listKey="index" listValue="name"/></td>
     
    </tr>
    <tr>
     <td>16:00~19:00</td>
     
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose31" list="f31"  listKey="index" listValue="name"/></td> 
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose32" list="f32"  listKey="index" listValue="name"/></td>
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose33" list="f33"  listKey="index" listValue="name"/></td>
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose34" list="f34"  listKey="index" listValue="name"/></td> 
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose35" list="f35"  listKey="index" listValue="name"/></td>
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose36" list="f36"  listKey="index" listValue="name"/></td>
-    <td><s:select headerKey="-1" headerValue="请选择" theme="simple" name="choose37" list="f37"  listKey="index" listValue="name"/></td>
-    
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[2][0]" list="f31"  listKey="index" listValue="name"/></td> 
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[2][1]" list="f32"  listKey="index" listValue="name"/></td>
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[2][2]" list="f33"  listKey="index" listValue="name"/></td>
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[2][3]" list="f34"  listKey="index" listValue="name"/></td> 
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[2][4]" list="f35"  listKey="index" listValue="name"/></td>
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[2][5]" list="f36"  listKey="index" listValue="name"/></td>
+    <td><s:select headerKey="" headerValue="请选择" theme="simple" name="choose[2][6]" list="f37"  listKey="index" listValue="name"/></td>
+   
    </tr>
 
 </table>
@@ -149,6 +150,7 @@ your browser does not support the canvas element.
     </s:form>
     
     <s:form action="backgymdetail.action">
+    <input name="getuser" type="hidden" value=<s:property value="setuser"/>>
     <input name="gym" type="hidden" value=<s:property value="gymname"/>>
     <input type=submit value="返回"/>
     </s:form>
