@@ -64,18 +64,20 @@ h1{
 style="border:1px solid black">
 your browser does not support the canvas element.
 </canvas-->
-<div id="dht">
-<h1><img src="top.jpg" width="800" height="250"/></h1></div>
-<hr />
+
 
 <div style="width:100%;min-height:500px;height:auto;position:relative;top:0px;left:0px;">
 <div id="htl">
+<font face="楷体" size = "6" color="black">
+用户注册
+</font>
 <div style="width:100%;min-height:300px;height:500;background-color:rgba(255,245,238,0.5);position:relative;top:30px;left:200px">
-<h4 style="position:relative;top">注意事项：</h4>
+<font face="楷体" size = "5" color="black">
 <ol style="list-style-type:decimal">
 
      <form action="registuserAction" method="post" name="form1">  
-    <table align="center">  
+    <table align="center"> 
+    <br> <br>
         <tr>  
             <td>电话</td>  
             <td><input type="text" name="user.phonenum"></td>  
@@ -94,13 +96,15 @@ your browser does not support the canvas element.
         </tr>  
        
         <tr>  
-            <td><input type="submit" value="注册"></td>  
+            <td><input type="submit" value="注册"></td> 
+             &nbsp;&nbsp;&nbsp;&nbsp;
             <td><input type="reset" value="重置"></td>  
         </tr>  
     </table>  
     <s:actionerror/>  
     </form>  
-
+</ol>
+</font>
  
 
 </form>

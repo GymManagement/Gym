@@ -255,6 +255,11 @@
             <result name="success">/searchmyorder.jsp</result>
             <result name="error">notfound.jsp</result>
         </action>
+        
+        <action name="checkcomment" class="com.checkcommentAction">
+            <result name="success">/checkcomment.jsp</result>
+            <result name="error">notfound.jsp</result>
+        </action>
     </package>
     
 

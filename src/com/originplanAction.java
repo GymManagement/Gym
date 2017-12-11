@@ -122,8 +122,9 @@ public class originplanAction extends ActionSupport {
 			String sql= "select * from Ω°…Ìº∆ªÆ";
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
-				index++;
+				index=rs.getInt("±‡∫≈");
 			}
+			index++;
 			for(int i=0;i<5;i++) {
 				for(int j=0;j<7;j++) {
 					if(!fac[i][j].equals("") && !fac[i][j].equals(null)) {
