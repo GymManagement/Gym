@@ -7,9 +7,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="icon" href="hitcso.ico" type="image/x-icon"/>
-<title>用户注册界面</title>
-
+<title>我要去健身</title>
 <style type="text/css">
+
+html{width:100%;height:100%;} 
+
+line-height:18px;padding:0px;margin:0px;text-align:center} 
+div{padding:18px} 
+img{border:0px;vertical-align:middle;padding:0;margin:0} 
+input, button{font-family:"Arial", "Tahoma", "微软雅黑", "雅黑";border:0;
+vertical-align:middle;margin:8px;line-height:18px;font-size:18px} 
+.btn{width:140px;height:36px;line-height:18px;font-size:18px;
+background:url("1.jpg") no-repeat left top;color:#FFF;padding-bottom:4px}
+
 html,body{
     margin:0;
     padding:0;
@@ -47,16 +57,10 @@ h1{
 }
 #dht{
     padding:10px;
-    boder:1px solid了，#000000; 
+    boder:1px solid#000000; 
     margin:0px;
 }
 </style>
-<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script type="text/javascript">
-
-  
-  
-  </script>
 
 </head>
 <body class="img-circle" background="background.jpg"style="background-repeat:no-repeat ;background-size:100% 100%; background-attachment:fixed;">
@@ -64,63 +68,45 @@ h1{
 style="border:1px solid black">
 your browser does not support the canvas element.
 </canvas-->
+<center>
+<br>
+<br>
+<br>
+<br>
 
-<div id="dht">
-<h1><img src="top.jpg" width="800" height="250"/></h1></div>
+      
+    <font face="楷体" size = "50" color="#00ffff">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;体育馆基本信息更新
+    </font>
+    <h2>${msg }</h2> 
+   </p>
+   </center>
+
 <hr />
-
 <div style="width:100%;min-height:500px;height:auto;position:relative;top:0px;left:0px;">
 <div id="htl">
-<div style="width:100%;min-height:300px;height:500;background-color:rgba(255,245,238,0.5);position:relative;top:30px;left:200px">
-<h4 style="position:relative;top">注意事项：</h4>
-<ol style="list-style-type:decimal">
+<div style="width:100%;min-height:300px;height:auto;background-color:rgba(255,245,238,0.5);position:relative;top:60px;left:50px">
+<font face="楷体" size = "5" color="black">
 
-你好，
-<a href="changeInfo?xxx=<s:property value="xxx"/>"><s:property value="xxxname"/></a>
+举办方：<s:property value="nameOfGym"/>体育馆
+<br>
+名称：<s:property value="name"/><br>
+<br>
+日期：<s:property value="data"/><br>
+<br>
+地点：<s:property value="location"/><br>
+<br>
+介绍：<s:property value="introduce"/><br>
 <br>
 
-
-<form action="searchGym.action">
-你想查看什么体育馆呢
-<s:select headerKey="-1" headerValue="请选择" name="nameOfGym" list="gymlist"  listKey="index" listValue="name"/> 
-
-<input type=submit value="确定"/>
-</form>
-<br>
-
-<a href="myplan?username=<s:property value="xxx"/>">我的健身计划</a>
-<br>
-
-如果需要推荐，点击
-<a href="rankingGym">这里</a>
-<br>
-
-<form action="searchusergame.action">
-查询比赛信息：
-<s:select headerKey="-1" headerValue="请选择" name="index" list="gamelist"  listKey="index" listValue="name"/>
-<input type=submit value="确定"/>
+<form action="usersignupone.action">
+<input name="indexget" type="hidden" value=<s:property value="index"/>>
+<input type="submit" value="我要报名">
 </form>
 
-
-<form action="backLogin.action">
-<input type=submit value="返回登录界面"/>
+<form action="backgymdetail.action">
+<input type="submit" value="返回">
 </form>
-<br>
-
- 
-
-</div>
-</div>
-</div>
-
-<hr />
-<div id="dht">
-<p style="position:relative;top:0px;left:200px;">Copyright © 2009 all rights reserved. Power by 上海众臻信息科技有限公司
-Please contact Us : market@sportoa.com
-Tel : 021-54933212
-</p>
-</div>
-
 
 </body>
 </html>

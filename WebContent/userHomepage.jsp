@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="icon" href="hitcso.ico" type="image/x-icon"/>
-<title>用户注册界面</title>
+<title>用户主页</title>
 
 <style type="text/css">
 html,body{
@@ -65,16 +65,16 @@ style="border:1px solid black">
 your browser does not support the canvas element.
 </canvas-->
 
-<div id="dht">
-<h1><img src="top.jpg" width="800" height="250"/></h1></div>
-<hr />
+
 
 <div style="width:100%;min-height:500px;height:auto;position:relative;top:0px;left:0px;">
 <div id="htl">
 <div style="width:100%;min-height:300px;height:500;background-color:rgba(255,245,238,0.5);position:relative;top:30px;left:200px">
-<h4 style="position:relative;top">注意事项：</h4>
+<font face="楷体" size = "7" color="black">
+&nbsp;&nbsp;&nbsp;用户主页
+</font>
 <ol style="list-style-type:decimal">
-
+<font face="楷体" size = "5" color="black">
 你好，
 <a href="changeInfo?xxx=<s:property value="xxx"/>"><s:property value="xxxname"/></a>
 <br>
@@ -87,18 +87,19 @@ your browser does not support the canvas element.
 <input type=submit value="确定"/>
 </form>
 <br>
-
+<br>
 <a href="myplan?username=<s:property value="xxx"/>">我的健身计划</a>
 <br>
-
+<br>
 如果需要推荐，点击
 <a href="rankingGym">这里</a>
 <br>
-
+<br>
 <form action="searchusergame.action">
 查询比赛信息：
 <s:select headerKey="-1" headerValue="请选择" name="index" list="gamelist"  listKey="index" listValue="name"/>
 <input type=submit value="确定"/>
+<br>
 </form>
 
 <a href="searchmyorder">查询预定信息</a>
@@ -106,9 +107,10 @@ your browser does not support the canvas element.
 <form action="backLogin.action">
 <input type=submit value="返回登录界面"/>
 </form>
+</font>
 <br>
 
- 
+ <br>
 
 </div>
 </div>

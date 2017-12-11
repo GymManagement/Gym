@@ -52,16 +52,32 @@ h1{
 </style>
 
 </head>
-<body class="img-circle" background="hitlibe.jpg"style="background-repeat:no-repeat ;background-size:100% 100%; background-attachment:fixed;">
+<body class="img-circle" background="background.jpg"style="background-repeat:no-repeat ;background-size:100% 100%; background-attachment:fixed;">
 <!--canvas id="myCanvas" width="1350" height="1000"
 style="border:1px solid black">
 your browser does not support the canvas element.
 </canvas-->
-<div id="dht">
-<h1><img src="top.jpg" width="800" height="250"/></h1></div>
-<hr />
 <center>
-<h2>请选择您的身份</h2>
+<br>
+<br>
+<br>
+<br>
+
+      
+    <font face="楷体" size = "50" color="#00ffff">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;欢迎来到体育馆查询系统
+    </font>
+    <h2>${msg }</h2> 
+   </p>
+   </center>
+
+
+<center>
+<br><br>
+
+<font face="楷体" size = "5" color="#00ffff">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请选择您的身份
+    </font>
 </center>
 
 
@@ -69,15 +85,13 @@ your browser does not support the canvas element.
 </ul>
 </div>
 </div>
-
+<center>
+<br><br><br><br><br>
 <img src="gym.jpg" width="200" height="200" hspace="50" /> 
 &nbsp;&nbsp;&nbsp;&nbsp;
-<img src="gym.jpg" width="200" height="200" hspace="30" /> 
+<img src="user.jpg" width="200" height="200" hspace="30" /> 
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 <a  href=registerworker align="center"><button type="button" >健身房员工</button></a>
     &nbsp;&nbsp;&nbsp;&nbsp;
   &nbsp;&nbsp;&nbsp;&nbsp;
@@ -92,6 +106,7 @@ your browser does not support the canvas element.
   &nbsp;&nbsp;&nbsp;&nbsp;
 
     <a  href=registerguest align="center"><button type="button" >普通用户</button></a>
+    </center>
   <br>
   <br>
   <br>

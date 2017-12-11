@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="icon" href="hitcso.ico" type="image/x-icon"/>
-<title>工作人员登录界面</title>
+<title>用户登录界面</title>
 
 <style type="text/css">
 html,body{
@@ -54,38 +54,7 @@ h1{
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript">
 
-function check()
-{
-  fr = document.form1;
-  var city = document.getElementById("color");
-  var sun = fr.username.value;
-  if(fr.username.value=="")
-    {
-    alert("用户名不能为空！");
-    fr.username.focus();
-    return false;
-    }
-  if(fr.password.value=="")
-    {
-    alert("密码不能为空！")
-    fr.password.focus();
-    return false;
-    }
-  /*$.ajax({
-  type: "get",//数据发送的方式（post 或者 get）
-  url: "http://localhost:8080/Teacher_management__system/hello.action",//要发送的后台地址
-  data: {"sun":"1"},//要发送的数据（参数）格式为{'val1':"1","val2":"2"}
-  dataType: "json",//后台处理后返回的数据格式
-  success: function (data) {//ajax请求成功后触发的方法
-     alert('请求成功');
-  },
-  error: function (msg) {//ajax请求失败后触发的方法
-      alert('错误');//弹出错误信息
-  }
-});
-//fr.submit();*/
-}
-  
+
   
   </script>
 
@@ -95,14 +64,15 @@ function check()
 style="border:1px solid black">
 your browser does not support the canvas element.
 </canvas-->
-<div id="dht">
-<h1><img src="top.jpg" width="800" height="250"/></h1></div>
-<hr />
+
 
 <div style="width:100%;min-height:500px;height:auto;position:relative;top:0px;left:0px;">
 <div id="htl">
 <div style="width:100%;min-height:300px;height:500;background-color:rgba(255,245,238,0.5);position:relative;top:30px;left:200px">
-<h4 style="position:relative;top">注意事项：</h4>
+<font face="楷体" size = "6" color="black">
+用户登录
+</font>
+<font face="楷体" size = "5" color="black">
 <ol style="list-style-type:decimal">
 <div><s:fielderror /></div>  
     <form action="loginuserAction" method="post" name="form1">  
@@ -112,8 +82,10 @@ your browser does not support the canvas element.
             <td><input type="text" name="user.phonenum"></td>  
         </tr>  
         <tr>  
+            <br><br>
             <td>密码</td>  
             <td><input type="password" name="user.password"></td>  
+          
         </tr>  
         
     
@@ -121,7 +93,7 @@ your browser does not support the canvas element.
             <td><input type="submit" value="提交"></td>  
             <td><input type="reset" value="重置">    
             <td><input type="button" value="注册"></td>
-              
+ </font>             
         </tr>  
     </table>  
     <s:actionerror/>  
@@ -141,15 +113,7 @@ Please contact Us : market@sportoa.com
 Tel : 021-54933212
 </p>
 </div>
-<script>
-var validator = "${attr.validator}";
-//cum = document.getElementById('pwd');;
-alert(validator);
-if(validator=="ERROR")
-  {
-  alert("用户名或密码错误！");
-  }
-</script>
+
 
 </body>
 </html>

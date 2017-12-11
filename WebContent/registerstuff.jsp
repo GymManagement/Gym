@@ -64,14 +64,15 @@ h1{
 style="border:1px solid black">
 your browser does not support the canvas element.
 </canvas-->
-<div id="dht">
-<h1><img src="top.jpg" width="800" height="250"/></h1></div>
-<hr />
+
 
 <div style="width:100%;min-height:500px;height:auto;position:relative;top:0px;left:0px;">
 <div id="htl">
 <div style="width:100%;min-height:300px;height:500;background-color:rgba(255,245,238,0.5);position:relative;top:30px;left:200px">
-<h4 style="position:relative;top">注意事项：</h4>
+
+<font face="楷体" size = "5" color="black">
+注意事项：
+</font>
 <ol style="list-style-type:decimal">
 
      <form action="registstuffAction" method="post" name="form1">  
@@ -99,7 +100,7 @@ your browser does not support the canvas element.
         <tr>  
             <td>体育馆</td>  
              
-            <td><s:select headerKey="-1" headerValue="请选择" name="stuff.gym" list="gymlist"  listKey="name" listValue="name"/></td>  
+            <td><s:select headerKey="-1" headerValue="请选择" theme = "simple" name="stuff.gym" list="gymlist"  listKey="name" listValue="name"/></td>  
         </tr> 
        
         <tr>  
