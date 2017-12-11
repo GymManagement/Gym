@@ -211,27 +211,36 @@ public class changefacAction extends ActionSupport {
 				System.out.println("b");
 				if(!getNewnum().equals("") && !getNewnum().equals(null)) {
 					if(maxnum>Integer.parseInt(getNewnum())) {//预订人数大于更改的数量
-						System.out.println("c");
+						//展示信息
+						conn = DriverManager.getConnection(url,"root","123456");
+						stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+						sql= "select * from 设施信息 where 体育馆='"+nn+"'";
+						rs = stmt.executeQuery(sql);
+						this.setFacnum(0);
+						while(rs.next()){
+							facility tfac=new facility();
+							tfac.setFacname(rs.getString("设施名称"));
+							tfac.setIndex(rs.getInt("编号"));
+							tfac.setNum(rs.getInt("可用数量"));
+							tfac.setIntroduce(rs.getString("简介"));
+							this.setFacnum(this.getFacnum()+1);
+							facnow.add(tfac);
+			            }
 						addActionError("更改数量小于用户已预定数量");
 						return INPUT;
 					}
-				}
-				
-				
+				}			
 				index=rs.getInt("编号");
 				if(getNewnum().equals("") || getNewnum().equals(null)) {
-					System.out.println("d");
 					rs.updateString("简介", this.getNewintroduce());			
 					rs.updateRow();
 				}
 				else if(getNewintroduce().equals("") || getNewintroduce().equals(null)) {
-					System.out.println("e");
 					deletenum=rs.getInt("可用数量")-Integer.parseInt(getNewnum());
 					rs.updateInt("可用数量", Integer.parseInt(getNewnum()));					
 					rs.updateRow();
 				}
 				else {
-					System.out.println("f");
 					deletenum=rs.getInt("可用数量")-Integer.parseInt(getNewnum());
 					rs.updateInt("可用数量", Integer.parseInt(getNewnum()));
 					rs.updateString("简介", this.getNewintroduce());			
@@ -240,7 +249,6 @@ public class changefacAction extends ActionSupport {
 				flag=0;
             }
 			else {//没有这个设施，添加这个设施信息
-				System.out.println("g");
 				sql = "INSERT INTO 设施信息(编号,设施名称,可用数量,体育馆,简介) VALUES(?,?,?,?,?)";    				
 	            PreparedStatement pst = conn.prepareStatement(sql);
 			    pst.setInt(1,sumnum);
@@ -254,7 +262,6 @@ public class changefacAction extends ActionSupport {
 			//以下部分为更改，添加，或删除‘设施详细信息’表部分
 			if(flag==0) {//更改信息且需要删除的信息大于0
 				if(deletenum>0) {
-					System.out.println("h");
 					for(int i=1;i<=3;i++) {
 						for(int j=1;j<=7;j++) {
 							for(int k=0;k<deletenum;k++) {
@@ -297,7 +304,6 @@ public class changefacAction extends ActionSupport {
 				}
 			}
 			if(flag==1) {//还是在添加信息
-				System.out.println("k");
 				int i=1;
 				sql="select * from 设施详细信息";
 				rs=stmt.executeQuery(sql);
@@ -306,7 +312,6 @@ public class changefacAction extends ActionSupport {
 				}
 				i++;
 				for(int j=0;j<Integer.parseInt(getNewnum());j++) {		
-					System.out.println("m");
 					for(int m=1;m<=7;m++) {
 						for(int n=1;n<=3;n++) {
 							PreparedStatement pst;

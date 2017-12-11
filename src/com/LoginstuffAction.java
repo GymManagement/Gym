@@ -36,10 +36,78 @@ public class LoginstuffAction extends ActionSupport {
     public void setStuff(Stuff stuff) {
         this.stuff = stuff;
     }
+    public class allgym{
+    	private int index;
+    	private String name;
+		public int getIndex() {
+			return index;
+		}
+		public void setIndex(int index) {
+			this.index = index;
+		}
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+    	
+    }
+    private Connection conn = null;
+    private Statement stmt = null;
+    private ResultSet rs = null;
+    private List<allgym> gymlist =new ArrayList<allgym>();
 
+    public List<allgym> getGymlist() {
+		return gymlist;
+	}
+	public void setGymlist(List<allgym> gymlist) {
+		this.gymlist = gymlist;
+	}
     public String regist(){  
         StuffDaolmpl dao = new StuffDaolmpl();  
-        int i = dao.stuffRegister(stuff);  
+        int i = dao.stuffRegister(stuff); 
+        try {
+			Class.forName("com.mysql.jdbc.Driver");     //加载MYSQL JDBC驱动程序   
+			System.out.println("Success loading Mysql Driver!");
+		}catch (Exception e) {
+			return ERROR;
+		}
+		try {
+			String url="jdbc:mysql://localhost:3306/体育馆基本信息?characterEncoding=utf8&useSSL=false";
+			conn = DriverManager.getConnection(url,"root","123456");
+			stmt = conn.createStatement(); //创建Statement对象	
+			String sql= "select * from 所有体育馆";
+			rs = stmt.executeQuery(sql);
+			List<allgym> tgymlist =new ArrayList<allgym>();
+			while (rs.next()){
+				allgym tgym=new allgym();
+				tgym.setIndex(rs.getInt("编号"));
+				tgym.setName(rs.getString("名称"));
+				tgymlist.add(tgym);
+	        }
+			this.setGymlist(tgymlist);
+
+			try {
+	            if (rs!= null) {
+	              rs.close();
+	            }
+
+	            if (stmt != null) {
+	              stmt.close();
+	            }
+
+	            if (conn != null) {
+	              conn.close();
+	            }
+	          } catch (Exception e) {
+	        	  System.out.print("get data error1!");
+	          }
+		} catch (Exception e) {
+			System.out.print("get data error2!");
+			e.printStackTrace();
+			return ERROR;
+		}
         if(i!=-1){  
         	
             return SUCCESS;  
@@ -55,6 +123,47 @@ public class LoginstuffAction extends ActionSupport {
 		this.setName((String)session.get("gym"));
         Stuff psw = stuffDao.stuffLogin(stuff.getIdentity(),stuff.getPassword(),stuff.getGym());  
         if(psw==null){
+        	try {
+    			Class.forName("com.mysql.jdbc.Driver");     //加载MYSQL JDBC驱动程序   
+    			System.out.println("Success loading Mysql Driver!");
+    		}catch (Exception e) {
+    			return ERROR;
+    		}
+    		try {
+    			String url="jdbc:mysql://localhost:3306/体育馆基本信息?characterEncoding=utf8&useSSL=false";
+    			conn = DriverManager.getConnection(url,"root","123456");
+    			stmt = conn.createStatement(); //创建Statement对象	
+    			String sql= "select * from 所有体育馆";
+    			rs = stmt.executeQuery(sql);
+    			List<allgym> tgymlist =new ArrayList<allgym>();
+    			while (rs.next()){
+    				allgym tgym=new allgym();
+    				tgym.setIndex(rs.getInt("编号"));
+    				tgym.setName(rs.getString("名称"));
+    				tgymlist.add(tgym);
+    	        }
+    			this.setGymlist(tgymlist);
+
+    			try {
+    	            if (rs!= null) {
+    	              rs.close();
+    	            }
+
+    	            if (stmt != null) {
+    	              stmt.close();
+    	            }
+
+    	            if (conn != null) {
+    	              conn.close();
+    	            }
+    	          } catch (Exception e) {
+    	        	  System.out.print("get data error1!");
+    	          }
+    		} catch (Exception e) {
+    			System.out.print("get data error2!");
+    			e.printStackTrace();
+    			return ERROR;
+    		}
             ActionContext.getContext().put("tip", "没有这个工作人员，请注册");
             return ERROR;  
         }

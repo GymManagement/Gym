@@ -67,7 +67,6 @@
 </tr>
 <s:iterator value="resultout" var='i'>
 <tr>
-<td>ha</td>
 <td><s:property value="resulttdate"/></td>
 <td> <s:property value="resulttime"/></td>
 <td><s:property value="resultuser"/></td>

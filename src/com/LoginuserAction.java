@@ -21,6 +21,14 @@ public class LoginuserAction extends ActionSupport {
     private User user;
     private UserDao userDao = new UserDaoImpl();
     private String xxx;
+    private String xxxname;
+    
+	public String getXxxname() {
+		return xxxname;
+	}
+	public void setXxxname(String xxxname) {
+		this.xxxname = xxxname;
+	}
 	public String getXxx() {
 		return xxx;
 	}
@@ -37,12 +45,14 @@ public class LoginuserAction extends ActionSupport {
     private Connection conn = null;
     private Statement stmt = null;
     private ResultSet rs = null;
+    
     public class game{
     	private String data;
         private String introduce;    
         private String location;
         private String name;
         private int index;
+        
 		public String getData() {
 			return data;
 		}
@@ -156,6 +166,12 @@ public class LoginuserAction extends ActionSupport {
     				tgymlist.add(tgym);
                 }
     			this.setGymlist(tgymlist);
+    			//获取用户名字
+    			sql= "select * from 普通用户 where 电话='"+user.getPhonenum()+"'";
+    			rs = stmt.executeQuery(sql);
+    			if(rs.next()){
+	    			this.setXxxname(rs.getString("姓名"));
+                }
     			//获取所有比赛列表
     			sql = "select * from 比赛信息";
     			rs=stmt.executeQuery(sql);

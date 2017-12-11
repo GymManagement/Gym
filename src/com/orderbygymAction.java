@@ -27,8 +27,15 @@ public class orderbygymAction extends ActionSupport {
 	private Connection conn = null;
     private Statement stmt = null;
     private ResultSet rs = null;
+    private String gymname;
     
-    private int choose11;
+	public String getGymname() {
+		return gymname;
+	}
+	public void setGymname(String gymname) {
+		this.gymname = gymname;
+	}
+	private int choose11;
     private int choose12;
     private int choose13;
     private int choose14;
@@ -430,12 +437,9 @@ public class orderbygymAction extends ActionSupport {
 		}
 	}
 	public String execute() throws Exception{
-		System.out.println("¹þ¹þ¹þ°¡");
-		System.out.println(this.getChoose11());
-		System.out.println(this.getChoose12());
+		this.setGymname(getGym());
 		try {
 			Class.forName("com.mysql.jdbc.Driver");     //¼ÓÔØMYSQL JDBCÇý¶¯³ÌÐò   
-			System.out.println("Success loading Mysql Driver!");
 		}catch (Exception e) {
 			return ERROR;
 		}
@@ -444,7 +448,6 @@ public class orderbygymAction extends ActionSupport {
 			conn = DriverManager.getConnection(url,"root","123456");	
 			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 		} catch (Exception e) {
-			System.out.print("get data error2!");
 			e.printStackTrace();
 			return ERROR;
 		}

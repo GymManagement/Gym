@@ -23,7 +23,14 @@ public class backhomepageAction extends ActionSupport {
     private Statement stmt = null;
     private ResultSet rs = null;
     private String xxx;
+    private String xxxname;
     
+   	public String getXxxname() {
+   		return xxxname;
+   	}
+   	public void setXxxname(String xxxname) {
+   		this.xxxname = xxxname;
+   	}
     public String getXxx() {
 		return xxx;
 	}
@@ -116,7 +123,6 @@ public class backhomepageAction extends ActionSupport {
 			String url="jdbc:mysql://localhost:3306/体育馆基本信息?characterEncoding=utf8&useSSL=false";
 			conn = DriverManager.getConnection(url,"root","123456");
 			stmt = conn.createStatement(); //创建Statement
-			gymlist=new ArrayList<allgym>();
 			String sql= "select * from 所有体育馆";
 			rs = stmt.executeQuery(sql);
 			List<allgym> tgymlist =new ArrayList<allgym>();
@@ -128,6 +134,12 @@ public class backhomepageAction extends ActionSupport {
 				tgymlist.add(tgym);
             }
 			this.setGymlist(tgymlist);
+			//获取用户名字
+			sql= "select * from 普通用户 where 电话='"+(String)session.get("username")+"'";
+			rs = stmt.executeQuery(sql);
+			if(rs.next()){
+    			this.setXxxname(rs.getString("姓名"));
+            }
 			//获取所有比赛列表
 			sql = "select * from 比赛信息";
 			rs=stmt.executeQuery(sql);

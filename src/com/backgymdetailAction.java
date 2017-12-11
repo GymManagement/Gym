@@ -24,12 +24,22 @@ public class backgymdetailAction extends ActionSupport {
 	private String tag;
 	private String score;
 	private String tele;
+	private String name;
 
 
 	private Connection conn = null;
     private Statement stmt = null;
     private ResultSet rs = null;
-    public class game{
+    
+ 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	public class game{
     	private String data;
         private String introduce;    
         private String location;
@@ -176,7 +186,7 @@ public class backgymdetailAction extends ActionSupport {
 			
 			rs = stmt.executeQuery(sql);
 			if(rs.next()){
-				setGym(getGym());
+				setName(getGym());
 					setPosition(rs.getString("位置"));
 					setPrice(rs.getString("价格"));
 					setTime(rs.getString("时间"));

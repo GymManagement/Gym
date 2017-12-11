@@ -112,12 +112,13 @@
         </action>
                
         <action name="backchangeinfo" class="com.changeInfoAction">
-            <result name="success">/userHomepage.jsp</result>
+            <result name="success">/changeInfo.jsp</result>
             <result name="error">/changeInfo.jsp</result>
         </action>
         
         <action name="score" class="com.scoreAction">
             <result name="success">/gymdetail.jsp</result>
+            <result name="input">/gymdetail.jsp</result>
             <result name="error">notfound.jsp</result>
         </action>
         
@@ -244,15 +245,15 @@
             <result name="input">searchusergame.jsp</result>
         </action>
         
-        <action name="usergameone" class="com.usergameoneAction">
-            <result name="success">/usergameone.jsp</result>
+        
+        <action name="searchmyorder" class="com.searchmyorderAction">
+            <result name="success">/searchmyorder.jsp</result>
             <result name="error">notfound.jsp</result>
         </action>
         
-         <action name="usersignupone" class="com.usersignuponeAction">
-            <result name="success">/usergameone.jsp</result>
+        <action name="deletemyorder" class="com.deletemyorderAction">
+            <result name="success">/searchmyorder.jsp</result>
             <result name="error">notfound.jsp</result>
-            <result name="input">searchusergame.jsp</result>
         </action>
     </package>
     

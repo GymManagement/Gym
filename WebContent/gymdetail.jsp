@@ -18,9 +18,7 @@
 <br>
 时间：<s:property value="time"/>
 <br>
-标签：<s:property value="tag"/>
-<br>
-分数：<s:property value="score"/>
+分数：<s:property value="score"/>(10分满分)
 <br>
 联系电话：<s:property value="tele"/>
 <br>
@@ -45,8 +43,8 @@
 
 <form action="score.action">
 <input name="gym" type="hidden" value=<s:property value="name"/>>
-评分:
-<input type=text name="userscore"/>
+评分:(10分满分)
+<s:select headerKey="-1" headerValue="请选择" name="userscore" list="#{'0':'0','1':'1','2':'2','3':'3','4':'4','5':'5','6':'6','7':'7','8':'8','9':'9','10':'10'}"/>
 <br>
 评论：
 <input type=text name="usercomment"/>
